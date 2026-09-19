@@ -6,15 +6,15 @@ load_dotenv()
 
 api_key = os.getenv("WEATHER_API")
 
-print(f"API key loaded finally: {api_key is not None}")
+print(f"API key loaded finally: {api_key is not None} {api_key[0:5]}")
 
-def get_info (lat, lon, API_Key, unit="matric"):
-    url = "https://api.openweathermap.org/data/3.0/onecall?"
+def get_info (appid, lat, lon, unit="metric"):
+    url ="https://api.openweathermap.org/data/2.5/onecall?"
 
     parameters ={
         "lat": lat,
         "lon": lon,
-        "api_key": API_Key,
+        "appid": appid,
         "units": unit,
     }
 
