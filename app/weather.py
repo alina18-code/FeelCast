@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 import os
 import requests
-from utils import convert_unix_time
+from utils import convert_unix_time, convert_meter_kilometre
 
 load_dotenv()
 
@@ -57,6 +57,7 @@ if __name__ == "__main__":
         wind_dir = weather_json["wind"]["deg"]
 
         visibility = weather_json["visibility"]
+        update_visibility = convert_meter_kilometre(visibility)
         
         print(f"Current Temperature: {current_temp}°C")
         print(f"Conditions: {description.title()}")
@@ -66,7 +67,7 @@ if __name__ == "__main__":
         print(f"Sunset at: {readable_sunset}")
         print(f"Wind Speed: {wind_speed}m/s")
         print(f"Wind direction: {wind_dir} degrees")
-        print(f"Visibility: {visibility}")
+        print(f"Visibility: {update_visibility} Km")
 
     
 
