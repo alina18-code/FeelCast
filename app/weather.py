@@ -1,6 +1,7 @@
 from dotenv import load_dotenv
 import os
 import requests
+from utils import convert_unix_time
 
 load_dotenv()
 
@@ -31,8 +32,8 @@ def get_info (appid, lat, lon, unit="metric"):
 
 
 API_Key = api_key
-latitude = 33.4
-longitude = -94.04
+latitude = 24.8607
+longitude = 67.0104
 
 weather_json = get_info(API_Key, latitude, longitude)
 
@@ -42,7 +43,9 @@ if weather_json:
     feels_like = weather_json["main"]["feels_like"]
     humidity = weather_json["main"]["humidity"]
     sunrise = weather_json["sys"]["sunrise"]
+    readable_sunrise = convert_unix_time(sunrise)
     sunset = weather_json["sys"]["sunset"]
+    readable_sunset = convert_unix_time(sunset)
     wind_speed = weather_json["wind"]["speed"]
     wind_dir = weather_json["wind"]["deg"]
     
@@ -50,8 +53,8 @@ if weather_json:
     print(f"Conditions: {description.title()}")
     print(f"Feels like: {feels_like}°C")
     print(f"Humidity: {humidity}%")
-    print(f"Sunries at: {sunrise}")
-    print(f"Sunset at: {sunset}")
+    print(f"Sunries at: {readable_sunrise}")
+    print(f"Sunset at: {readable_sunset}")
     print(f"Wind Speed: {wind_speed}m/s")
     print(f"Wind direction: {wind_dir} degrees")
 
