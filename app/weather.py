@@ -10,7 +10,7 @@ api_key = os.getenv("WEATHER_API")
 print(f"API key loaded finally: {api_key is not None} ")
 
 
-def get_info (appid, lat, lon, unit="metric"):
+def get_weather_info (appid, lat, lon, unit="metric"):
     url ="https://api.openweathermap.org/data/2.5/weather"
 
     parameters ={
@@ -32,12 +32,42 @@ def get_info (appid, lat, lon, unit="metric"):
         print(f"error occured {err}")
 
 
+def get_geocoding_info (city_name, country_code="", api_key="" ):
+    url = "http://api.openweathermap.org/geo/1.0/direct?"
+
+    q_param = f"{city_name},{country_code}".strip(",")
+
+    parameters = {
+        "q": q_param,
+        "limit": 1,
+        "appid": api_key
+    }
+
+    try:
+        response = requests.get(url, parameters, timeout=5)
+        response.raise_for_status()
+
+        return response.json()
+
+    except requests.exceptions.HTTPError as http_err:
+            print(f"https error occured {http_err}")
+
+    except Exception as err:
+            print(f"error occured {err}")
+
+
 
 API_Key = api_key
 latitude = 24.8607
 longitude = 67.0104
+city_name = "Karachi"
+country_code = "PK"
 
-weather_json = get_info(API_Key, latitude, longitude)
+
+geocoding_json = get_geocoding_info(city_name,country_code,API_Key)
+print(geocoding_json)
+
+weather_json = get_weather_info(API_Key, latitude, longitude)
 
 if weather_json:
     current_temp = weather_json["main"]["temp"]
