@@ -10,37 +10,14 @@ api_key = os.getenv("WEATHER_API")
 print(f"API key loaded finally: {api_key is not None} ")
 
 
-def get_weather_info (appid, lat, lon, unit="metric"):
-    url ="https://api.openweathermap.org/data/2.5/weather"
+def get_weather_info(appid, lat, lon, unit="metric"):
+    url = "https://api.openweathermap.org/data/2.5/weather"
 
-    parameters ={
+    parameters = {
         "lat": lat,
         "lon": lon,
         "appid": appid,
         "units": unit,
-    }
-
-    try: 
-        response = requests.get (url, parameters, timeout=5 )
-        response.raise_for_status ()
-
-        return response.json()
-
-    except requests.exceptions.HTTPError as http_err:
-        print(f"https error occured {http_err}")
-    except Exception as err:
-        print(f"error occured {err}")
-
-
-def get_geocoding_info (city_name, country_code="", api_key="" ):
-    url = "http://api.openweathermap.org/geo/1.0/direct?"
-
-    q_param = f"{city_name},{country_code}".strip(",")
-
-    parameters = {
-        "q": q_param,
-        "limit": 1,
-        "appid": api_key
     }
 
     try:
@@ -50,24 +27,45 @@ def get_geocoding_info (city_name, country_code="", api_key="" ):
         return response.json()
 
     except requests.exceptions.HTTPError as http_err:
-            print(f"https error occured {http_err}")
+        print(f"https error occured {http_err}")
+    except Exception as err:
+        print(f"error occured {err}")
+
+
+def get_geocoding_info(city_name, country_code="", api_key=""):
+    url = "http://api.openweathermap.org/geo/1.0/direct?"
+
+    q_param = f"{city_name},{country_code}".strip(",")
+
+    parameters = {"q": q_param, "limit": 1, "appid": api_key}
+
+    try:
+        response = requests.get(url, parameters, timeout=5)
+        response.raise_for_status()
+
+        return response.json()
+
+    except requests.exceptions.HTTPError as http_err:
+        print(f"https error occured {http_err}")
 
     except Exception as err:
-            print(f"error occured {err}")
-
+        print(f"error occured {err}")
 
 
 API_Key = api_key
-latitude = 24.8607
-longitude = 67.0104
-city_name = "Karachi"
+city_name = "karachi"
 country_code = "PK"
 
 
-geocoding_json = get_geocoding_info(city_name,country_code,API_Key)
-print(geocoding_json)
+geocoding_json = get_geocoding_info(city_name, country_code, API_Key)
 
-weather_json = get_weather_info(API_Key, latitude, longitude)
+if geocoding_json and len(geocoding_json) > 0:
+    latitude = geocoding_json[0]["lat"]
+    longitude = geocoding_json[0]["lon"]
+    weather_json = get_weather_info(API_Key, latitude, longitude)
+else:
+    weather_json = None
+    print("Location not found. No weather info is available.")
 
 if weather_json:
     current_temp = weather_json["main"]["temp"]
@@ -88,9 +86,8 @@ if weather_json:
     visibility = weather_json["visibility"]
     update_visibility = convert_meter_kilometre(visibility)
 
-    rain_data = weather_json.get('rain', {})
-    rain = rain_data.get('1h', 0)
-
+    rain_data = weather_json.get("rain", {})
+    rain = rain_data.get("1h", 0)
 
     print(f"Current Temperature: {current_temp}°C")
     print(f"Conditions: {description.title()}")
@@ -102,7 +99,3 @@ if weather_json:
     print(f"Wind direction: {wind_dir} degrees")
     print(f"Visibility: {update_visibility} Km")
     print(f"Rain: {rain} mm/h")
-
-    
-
-    
