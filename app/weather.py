@@ -51,6 +51,7 @@ def get_geocoding_info(city_name, country_code="", api_key=""):
     except Exception as err:
         print(f"error occured {err}")
 
+
 if __name__ == "__main__":
         API_Key = api_key
         city_name = "karachi"

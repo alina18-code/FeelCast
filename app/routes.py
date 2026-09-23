@@ -14,19 +14,26 @@ app = Flask(__name__, template_folder="../templates")
 def index():
     return render_template("index.html")
 
+
 @app.route("/search", methods=["GET", "POST"])
 def search():
     city = request.values.get("city")
     geocoding_results = get_geocoding_info(city, api_key= API_KEY)
     latitude = geocoding_results[0]["lat"]
     longitude = geocoding_results[0]["lon"]
-    #print(f"latitude:{latitude}")
-    #print(f"longitude:{longitude}")
-    weather_information = get_weather_info(API_KEY,latitude, longitude,)
-    print(weather_information)
+    weather_json = get_weather_info(API_KEY,latitude, longitude,)
+    #print(weather_json)
+    temperature = weather_json["main"]["temp"]
+    condition = weather_json["weather"][0]["description"]
+    humidity = weather_json["main"]["humidity"]
 
-    return "City received! Check your terminal for the geocoding output."
 
+    return render_template(
+        "index.html",
+        temperature = temperature,
+        condition = condition,
+        humidity = humidity
+    )
 
 
 if __name__ == "__main__":
