@@ -51,51 +51,51 @@ def get_geocoding_info(city_name, country_code="", api_key=""):
     except Exception as err:
         print(f"error occured {err}")
 
+if __name__ == "__main__":
+        API_Key = api_key
+        city_name = "karachi"
+        country_code = "PK"
 
-API_Key = api_key
-city_name = "karachi"
-country_code = "PK"
 
+        geocoding_json = get_geocoding_info(city_name, country_code, API_Key)
 
-geocoding_json = get_geocoding_info(city_name, country_code, API_Key)
+        if geocoding_json and len(geocoding_json) > 0:
+            latitude = geocoding_json[0]["lat"]
+            longitude = geocoding_json[0]["lon"]
+            weather_json = get_weather_info(API_Key, latitude, longitude)
+        else:
+            weather_json = None
+            print("Location not found. No weather info is available.")
 
-if geocoding_json and len(geocoding_json) > 0:
-    latitude = geocoding_json[0]["lat"]
-    longitude = geocoding_json[0]["lon"]
-    weather_json = get_weather_info(API_Key, latitude, longitude)
-else:
-    weather_json = None
-    print("Location not found. No weather info is available.")
+        if weather_json:
+            current_temp = weather_json["main"]["temp"]
+            description = weather_json["weather"][0]["description"]
 
-if weather_json:
-    current_temp = weather_json["main"]["temp"]
-    description = weather_json["weather"][0]["description"]
+            feels_like = weather_json["main"]["feels_like"]
+            humidity = weather_json["main"]["humidity"]
 
-    feels_like = weather_json["main"]["feels_like"]
-    humidity = weather_json["main"]["humidity"]
+            sunrise = weather_json["sys"]["sunrise"]
+            readable_sunrise = convert_unix_time(sunrise)
 
-    sunrise = weather_json["sys"]["sunrise"]
-    readable_sunrise = convert_unix_time(sunrise)
+            sunset = weather_json["sys"]["sunset"]
+            readable_sunset = convert_unix_time(sunset)
 
-    sunset = weather_json["sys"]["sunset"]
-    readable_sunset = convert_unix_time(sunset)
+            wind_speed = weather_json["wind"]["speed"]
+            wind_dir = weather_json["wind"]["deg"]
 
-    wind_speed = weather_json["wind"]["speed"]
-    wind_dir = weather_json["wind"]["deg"]
+            visibility = weather_json["visibility"]
+            update_visibility = convert_meter_kilometre(visibility)
 
-    visibility = weather_json["visibility"]
-    update_visibility = convert_meter_kilometre(visibility)
+            rain_data = weather_json.get("rain", {})
+            rain = rain_data.get("1h", 0)
 
-    rain_data = weather_json.get("rain", {})
-    rain = rain_data.get("1h", 0)
-
-    print(f"Current Temperature: {current_temp}°C")
-    print(f"Conditions: {description.title()}")
-    print(f"Feels like: {feels_like}°C")
-    print(f"Humidity: {humidity}%")
-    print(f"Sunries at: {readable_sunrise}")
-    print(f"Sunset at: {readable_sunset}")
-    print(f"Wind Speed: {wind_speed}m/s")
-    print(f"Wind direction: {wind_dir} degrees")
-    print(f"Visibility: {update_visibility} Km")
-    print(f"Rain: {rain} mm/h")
+            print(f"Current Temperature: {current_temp}°C")
+            print(f"Conditions: {description.title()}")
+            print(f"Feels like: {feels_like}°C")
+            print(f"Humidity: {humidity}%")
+            print(f"Sunries at: {readable_sunrise}")
+            print(f"Sunset at: {readable_sunset}")
+            print(f"Wind Speed: {wind_speed}m/s")
+            print(f"Wind direction: {wind_dir} degrees")
+            print(f"Visibility: {update_visibility} Km")
+            print(f"Rain: {rain} mm/h")
