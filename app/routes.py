@@ -18,11 +18,13 @@ def index():
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
-    city = request.values.get("city")
+    get_city = request.values.get("city")
+    city = get_city
 
-    geocoding_results = get_geocoding_info(city, api_key= API_KEY)
+    geocoding_results = get_geocoding_info(get_city, api_key= API_KEY)
     latitude = geocoding_results[0]["lat"]
     longitude = geocoding_results[0]["lon"]
+
 
     weather_json = get_weather_info(API_KEY,latitude, longitude,)
 
@@ -51,6 +53,7 @@ def search():
 
     return render_template(
         "index.html",
+        city = city,
         temperature = temperature,
         condition = condition,
         humidity = humidity,

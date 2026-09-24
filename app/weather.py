@@ -7,7 +7,7 @@ load_dotenv()
 
 api_key = os.getenv("WEATHER_API")
 
-print(f"API key loaded finally: {api_key is not None} ")
+# print(f"API key loaded finally: {api_key is not None} ")
 
 
 def get_weather_info(appid, lat, lon, unit="metric"):
