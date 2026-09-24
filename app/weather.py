@@ -81,6 +81,7 @@ if __name__ == "__main__":
             sunset = weather_json["sys"]["sunset"]
             readable_sunset = convert_unix_time(sunset)
 
+
             wind_speed = weather_json["wind"]["speed"]
             wind_dir = weather_json["wind"]["deg"]
 
