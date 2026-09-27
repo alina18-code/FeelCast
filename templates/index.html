@@ -3,28 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home page</title>
+    <title>FeelCast</title>
 </head>
 <body>
-    <form action="/search" method="POST">
+
+    <header>
+        <h1 class="app">FeelCast</h1>
+        <button id="sound_toggle" type="button" aria-label="toggle_sound">🔊</button>
+    </header>
+
+ <main>         
+    
+ </main>
+    <section clas="search_section">
+        form action="/search" method="POST">
         <label for="city-input">City: </label>
         <input type="text" id="city-input" name="city" placeholder="Enter a city name" required> 
         <button type="submit">search</button>
     </form>
+    </section>
 
-    <div class="weather">
-        <h1>City: {{city}} </h1>
-        <p>Temperature: {{temperature}}°C</p>
-        <p>Condition: {{condition}}</p>
-        <p>Humidity: {{humidity}}%</p>
-        <p>Feels like: {{feels_like}}°C</p>
-        <p>Sunrise: {{readable_sunrise}}</p>
-        <p>Sunset: {{readable_sunset}}</p>
-        <p>Visibility: {{update_visibility}} Km</p>
-        <p>Wind speed: {{wind_speed}}m/s</p>
-        <p>Rain: {{rain}}mm/h</p>
-        <p>Wind direction: {{wind_dir}} degrees</p>
-    </div>
+    <section clas="main_weather">
+        <h2 class="city">City: {{city}} </h2>
+        <p class="temperature">Temperature: {{temperature}}°C</p>
+        <p class="condition">Condition: {{condition}}</p>
+        <p class="feels_like">Feels like: {{feels_like}}°C</p>
+
+    </section>
+
+    <section class="detailed_weather">
+        <div class="card humidity-card">
+        <span class="label">Humidity</span>
+        <span class="value">{{ humidity }}%</span>
+      </div>
+      <div class="card visibility-card">
+        <span class="label">Visibility</span>
+        <span class="value">{{ visibility }} km</span>
+      </div>
+      <div class="card wind-card">
+        <span class="label">Wind</span>
+        <span class="value">{{ wind_speed }} m/s</span>
+      </div>
+      <div class="card sunrise-card">
+        <span class="label">Sunrise</span>
+        <span class="value">{{ sunrise }}</span>
+      </div>
+      <div class="card sunset-card">
+        <span class="label">Sunset</span>
+        <span class="value">{{ sunset }}</span>
+      </div>
+      <div class="card rain-card">
+        <span class="label">Rain</span>
+        <span class="value">{{ rain }} mm</span>
+      </div>
+      <div class="card wind-direction-card">
+        <span class="label">Wind Direction</span>
+        <span class="value">{{ wind_deg }}°</span>
+      </div>
+
+    </section>
+    
+    <section class="hourly-forecast">
+        <div class="hour-card">
+          <span class="time">{{ hour.time }}</span>
+          <span class="temp">{{ hour.temp }}°C</span>
+        </div>
+    </section>
+    
+
     
 </body>
 </html>
