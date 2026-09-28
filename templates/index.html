@@ -11,7 +11,12 @@
   <body>
 
     <header class="site_header">
-      <h1 class="app">FeelCast</h1>
+
+      <div class="app">
+        <h1 class="app_name">FeelCast</h1>
+      <p class="tagline">Feel the weather</p>
+      </div>
+
       <button id="sound_toggle" type="button" aria-label="toggle_sound">
        🔊
       </button>
@@ -21,8 +26,9 @@
 
 
       <section class="search_section">
-        <form action="/search" method="POST">
-          <label for="city-input">City: </label>
+        <h2 class="search_title">Search a location</h2>
+        <form action="/search" method="POST" class="search_form">
+          
           <input
             type="text"
             id="city-input"

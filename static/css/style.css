@@ -20,7 +20,7 @@ body {
     padding: 20px, 40px;
 }
 
-.logo{
+.app_name{
     font-size: 30px;
     margin: 0;
 }
@@ -33,4 +33,49 @@ body {
     padding: 8px;
     border-radius: 50%;
 }
+
+.tagline{
+    margin: 0;
+    font-size: 15px;
+    color: #E0F7FA;
+}
+
+.search_section{
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.search_form{
+    display: inline-flex;
+    gap: 0;
+}
+
+.search_form input{
+    font-size: 18px;
+    padding: 14px 20px;
+    border: none;
+    outline: none;
+    width: 270px;
+    border-radius: 8px 0 0 8px ;
+
+}
+
+.search_form button{
+    font-size: 16px;
+    padding: 14px 23px;
+    border: none;
+    border-radius: 8px 0 0 8px ;
+    background-color: #000000;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.search_title{
+    font-size: 17px;
+    font-weight: 500;
+    margin: 0 0 20px 0;
+    color: #E0F7FA ;
+}
+
+
 
