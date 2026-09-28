@@ -13,3 +13,24 @@ body {
     scroll-behavior: smooth;
 }
 
+.site_header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px, 40px;
+}
+
+.logo{
+    font-size: 30px;
+    margin: 0;
+}
+
+#sound_toggle{
+    background-color: transparent;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+}
+
