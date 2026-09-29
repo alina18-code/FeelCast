@@ -50,33 +50,13 @@ body {
     gap: 10px;
 }
 
-.search_form input{
-    font-size: 18px;
-    padding: 14px 20px;
-    border: none;
-    outline: none;
-    width: 270px;
-    border-radius: 10px ;
-
-}
-
-.search_form button{
-    font-size: 16px;
-    padding: 14px 23px;
-    border: none;
-    border-radius: 10px;
-    background-color: #000000;
-    color: #FFFFFF;
-    cursor: pointer;
-    
-}
-
-.search_title{
-    font-size: 17px;
-    font-weight: 500;
-    margin: 0 0 20px 0;
-    color: #E0F7FA ;
-    text-align: center;
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  padding: 6px;
+  gap: 8px;
 }
 
 
