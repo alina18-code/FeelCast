@@ -13,19 +13,19 @@ body {
     scroll-behavior: smooth;
 }
 
-.site_header{
+.site_header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px, 40px;
 }
 
-.app_name{
+.app_name {
     font-size: 30px;
     margin: 0;
 }
 
-#sound_toggle{
+#sound_toggle {
     background-color: transparent;
     border: none;
     font-size: 30px;
@@ -34,30 +34,71 @@ body {
     border-radius: 50%;
 }
 
-.tagline{
+.tagline {
     margin: 0;
     font-size: 15px;
     color: #E0F7FA;
 }
 
-.search_section{
+.search_section {
     text-align: center;
     padding: 40px 20px;
 }
 
-.search_form{
+.search_form {
     display: inline-flex;
     gap: 10px;
 }
 
-.search-bar {
+.search_bar {
   display: flex;
   align-items: center;
   background-color: rgba(255, 255, 255, 0.15);
   border-radius: 999px;
   padding: 6px;
   gap: 8px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
+
+.search_icon {
+    padding-left: 10px;
+    font-size: 15px;
+}
+
+.search_bar input {
+    font-size: 14px;
+    padding: 10px 8px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: #FFFFFF;
+    width: 220px;
+}
+
+.search_bar input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.search_bar button {
+    font-size: 15px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 999px;
+    background-color: #1a3a5c;
+    color: #FFFFFF;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.search_title {
+  font-size: 15px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0 0 16px 0;
+  text-align: center;
+}
+
 
 
 
