@@ -43,10 +43,19 @@
 
 
       <section class="main_weather">
-        <h2 class="city">City: {{city}}</h2>
-        <p class="temperature">Temperature: {{temperature}}°C</p>
-        <p class="condition">Condition: {{condition}}</p>
-        <p class="feels_like">Feels like: {{feels_like}}°C</p>
+          {% if temperature is defined %}
+          <h2 class="city">📍{{city}}</h2>
+          <p class="temperature">{{temperature}}°C</p>
+          <p class="condition">{{condition}}</p>
+          <p class="feels_like">Feels like: {{feels_like}}°C</p>
+          {% else %}
+            <p class="hero_placeholder">Search a city to see the weather</p>
+          {% endif %}
+
+        <div>
+          <span>↓</span>
+          <p>scroll</p>
+        </div>
       </section>
 
       <section class="detailed_weather">
