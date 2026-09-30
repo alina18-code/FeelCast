@@ -26,12 +26,18 @@ body {
 }
 
 #sound_toggle {
-    background-color: transparent;
+    background-color: rgba(255, 255, 255, 0.15);;
     border: none;
-    font-size: 30px;
+    font-size: 14px;
     cursor: pointer;
-    padding: 8px;
-    border-radius: 50%;
+    padding: 8px 16px;
+    color: #FFFFFF;
+    border-radius: 999px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    gap: 6px;
+    display: flex;
+    align-items: center;
 }
 
 .tagline {
@@ -42,7 +48,7 @@ body {
 
 .search_section {
     text-align: center;
-    padding: 40px 20px;
+    padding: 20px 20px 30px 20px;
 }
 
 .search_form {
@@ -101,8 +107,8 @@ body {
 
 .main_weather {
     text-align: center;
-    padding: 100px 20px;
-    min-height: 70vh;
+    padding: 40px 20px 20px 20px;
+    min-height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -133,6 +139,10 @@ body {
   align-items: center;
   justify-content: center;
   gap: 8px;
+}
+
+.condition_icon {
+    font-size: 20px;
 }
 
 .feels_like {

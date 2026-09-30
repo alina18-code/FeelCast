@@ -18,7 +18,7 @@
       </div>
 
       <button id="sound_toggle" type="button" aria-label="toggle_sound">
-       🔊
+       🔊 sound on
       </button>
     </header>
 
@@ -43,14 +43,10 @@
 
 
       <section class="main_weather">
-          {% if temperature is defined %}
           <h2 class="city">📍{{city}}</h2>
           <p class="temperature">{{temperature}}°C</p>
-          <p class="condition">{{condition}}</p>
+          <p class="hero_condition"><span class="condition_icon">☀️</span>{{ condition }}</p>
           <p class="feels_like">Feels like: {{feels_like}}°C</p>
-          {% else %}
-            <p class="hero_placeholder">Search a city to see the weather</p>
-          {% endif %}
 
         <div>
           <span>↓</span>
