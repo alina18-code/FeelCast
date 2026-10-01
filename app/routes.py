@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 from weather import get_geocoding_info, get_weather_info
 from dotenv import load_dotenv
 import os
-from utils import convert_unix_time, convert_meter_kilometre
+from utils import convert_unix_time, convert_meter_kilometre, get_theme
 
 load_dotenv ()
 
@@ -31,6 +31,9 @@ def search():
     temperature = weather_json["main"]["temp"]
     condition = weather_json["weather"][0]["description"]
 
+    condition_main = weather_json["weather"][0]["main"]
+    theme = get_theme(condition_main)
+
     humidity = weather_json["main"]["humidity"]
     feels_like = weather_json["main"]["feels_like"]
     
@@ -39,6 +42,11 @@ def search():
 
     sunset = weather_json["sys"]["sunset"]
     readable_sunset = convert_unix_time(sunset)
+
+    current_time = weather_json["dt"]
+    if current_time < sunrise or current_time > sunset:
+        theme = "night"
+    print(theme)
 
     wind_speed = weather_json["wind"]["speed"]
     wind_dir = weather_json["wind"]["deg"]
@@ -64,8 +72,10 @@ def search():
         wind_dir = wind_dir,
         update_visibility = update_visibility,
         rain = rain,
+        theme = theme,
     )
 
 
 if __name__ == "__main__":
     app.run(debug=True)
+    
