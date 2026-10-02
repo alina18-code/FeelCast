@@ -13,12 +13,14 @@ app = Flask(__name__, template_folder="../templates", static_folder="../static")
 
 @app.route("/")
 def index():
-    return render_template("index.html, theme=sunny")
+    return render_template("index.html", theme="sunny")
 
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
     get_city = request.values.get("city")
+    if not get_city or len(get_city.strip()) < 4 or not get_city.replace(" ", "").isalpha():
+        return render_template("index.html", theme="sunny", error="Please enter a valid city name.")
     city = get_city
 
     geocoding_results = get_geocoding_info(get_city, api_key= API_KEY)
