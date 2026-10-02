@@ -13,7 +13,7 @@ app = Flask(__name__, template_folder="../templates", static_folder="../static")
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html, theme=sunny")
 
 
 @app.route("/search", methods=["GET", "POST"])
@@ -22,6 +22,10 @@ def search():
     city = get_city
 
     geocoding_results = get_geocoding_info(get_city, api_key= API_KEY)
+
+    if not geocoding_results:
+        return render_template("index.html", theme="sunny", error="City not found. Please check the spelling and try again.")
+
     latitude = geocoding_results[0]["lat"]
     longitude = geocoding_results[0]["lon"]
 
@@ -44,8 +48,11 @@ def search():
     readable_sunset = convert_unix_time(sunset)
 
     current_time = weather_json["dt"]
-    if current_time < sunrise or current_time > sunset:
+    is_night = current_time < sunrise or current_time > sunset
+
+    if is_night and condition_main in ["Clear", "Clouds"]:
         theme = "night"
+
     print(theme)
 
     wind_speed = weather_json["wind"]["speed"]

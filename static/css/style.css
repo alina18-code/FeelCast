@@ -174,7 +174,7 @@ body {
     margin: 0;
 }
 
-.main_page {
+.main_page.sunny {
     background-image: url("/static/images/sunlight_theme_image.png");
     background-size: cover;
     background-position: center;
@@ -182,7 +182,71 @@ body {
     display: flex;
     flex-direction: column;
     position: relative;
+
 }
+
+.main_page.cloudy {
+  background-image: url("/static/images/cloudy_theme_image.png");
+  background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+}
+
+.main_page.rain {
+  background-image: url("/static/images/rain_theme_image.png");
+  background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+}
+
+.main_page.snow {
+  background-image: url("/static/images/snow_theme_image.png");
+  background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+}
+
+.main_page.storm {
+  background-image: url("/static/images/storm_theme_image.png");
+  background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+}
+
+.main_page.night {
+  background-image: url("/static/images/night_theme_image.png");
+  background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+}
+
+.error_message {
+  color: #ffb3b3;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+
 
 
 
