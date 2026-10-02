@@ -159,7 +159,7 @@ body {
     gap: 2px;
     color: rgba(255, 255, 255, 0.75);
     position: absolute;
-    bottom: 20px;
+    bottom: 70px;
     left: 50%;
     transform: translateX(-50%);
 
@@ -246,7 +246,26 @@ body {
   margin-top: 10px;
 }
 
+.wave_divider {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    line-height: 0;
+}
 
+.wave_divider svg {
+    width: 100%;
+    height: 100px;
+    display: block;
+}
+
+.main_page.sunny .wave_divider path { fill: #3d2817; }
+.main_page.cloudy .wave_divider path { fill: #2c3e4a; }
+.main_page.rain .wave_divider path { fill: #1f3038; }
+.main_page.snow .wave_divider path { fill: #2e3b47; }
+.main_page.storm .wave_divider path { fill: #141b24; }
+.main_page.night .wave_divider path { fill: #0d1829; }
 
 
 
