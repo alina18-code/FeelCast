@@ -67,7 +67,11 @@
       </section>
     </div>
     
-      <section class="detailed_weather">
+      <section class="detailed_weather{{theme}}">
+        <div class="detailed_weather_bg"></div>
+
+       <div class="detailed_weather_content">
+
         <div class="card humidity-card">
           <span class="label">Humidity</span>
           <span class="value">{{ humidity }}%</span>
@@ -102,6 +106,8 @@
           <span class="label">Wind Direction</span>
           <span class="value">{{ wind_dir }}°</span>
         </div>
+
+       </div>
       </section>
 
 
