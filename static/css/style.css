@@ -270,35 +270,71 @@ body {
 .detailed_weather {
     position: relative;
     overflow: hidden;
-    padding: 60px 20px;
+    min-height: 100vh;
+    padding: 80px 20px;
     color: #FFFFFF;
 }
 
+
 .detailed_weather_bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    filter: blur(30px);
-    transform: scale(1.1);
-    z-index: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: blur(10px);
+  transform: scale(1.1);
+  z-index: 0;
 }
 
-.detailed_weather.sunny .detailed_weather_bg { background-image: url("/static/images/sunny_theme_image.png"); }
-.detailed_weather.cloudy .detailed_weather_bg { background-image: url("/static/images/cloudy_theme_image.png"); }
-.detailed_weather.rain .detailed_weather_bg { background-image: url("/static/images/rain_theme_image.png"); }
-.detailed_weather.snow .detailed_weather_bg { background-image: url("/static/images/snow_theme_image.png"); }
-.detailed_weather.storm .detailed_weather_bg { background-image: url("/static/images/storm_theme_image.png"); }
-.detailed_weather.night .detailed_weather_bg { background-image: url("/static/images/night_theme_image.png"); }
+.detailed_weather.sunny .detailed_weather_bg 
+{ background-image: url("/static/images/sunlight_theme_image.png"); }
+.detailed_weather.cloudy .detailed_weather_bg 
+{ background-image: url("/static/images/cloudy_theme_image.png"); }
+.detailed_weather.rain .detailed_weather_bg 
+{ background-image: url("/static/images/rain_theme_image.png"); }
+.detailed_weather.snow .detailed_weather_bg 
+{ background-image: url("/static/images/snow_theme_image.png"); }
+.detailed_weather.storm .detailed_weather_bg 
+{ background-image: url("/static/images/storm_theme_image.png"); }
+.detailed_weather.night .detailed_weather_bg 
+{ background-image: url("/static/images/night_theme_image.png"); }
 
 .detailed_weather_content {
   position: relative;
   z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
+.card {
+  background-color: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  text-align: center;
+
+}
+
+.label {
+    display: block;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 8px;
+
+}
+
+.value {
+    font-size: 22px;
+    display: block;
+    font-weight: 700;
+}
 
 
 

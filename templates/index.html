@@ -9,114 +9,115 @@
   </head>
 
   <body>
+    <div class="main_page {{ theme }}">
 
-    <div class="main_page {{theme}}">
-
-      <header class="site_header">
-
+    <header class="site_header">
       <div class="app">
         <h1 class="app_name">FeelCast</h1>
-      <p class="tagline">Feel the weather</p>
+        <p class="tagline">Feel the weather</p>
       </div>
-
       <button id="sound_toggle" type="button" aria-label="toggle_sound">
-       🔊 sound on
+        🔊 sound on
       </button>
     </header>
 
     <main>
 
-
       <section class="search_section">
         <h4 class="search_title">Search a location</h4>
-          <form action="/search" method="POST" class="search_form">
-            <div class="search_bar">
-              <span class="search_icon">📍</span>
-              <input
-              type="text"
-              id="city-input"
-              name="city"
-              placeholder="Enter a city name"
-              required/>
-              <button type="submit">🔎 search</button>
-            </div>
+        <form action="/search" method="POST" class="search_form">
+          <div class="search_bar">
+            <span class="search_icon">📍</span>
+            <input type="text" id="city-input" name="city" placeholder="Enter a city name" required />
+            <button type="submit">🔎 search</button>
+          </div>
         </form>
 
         {% if error %}
-        <p class="error_message">{{ error }}</p>
+          <p class="error_message">{{ error }}</p>
         {% endif %}
-
-        <div class="wave_divider">
-          <svg viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M0,35 C360,100 1080,0 1440,45 L1440,100 L0,100 Z" />
-          </svg>
-        </div>
       </section>
 
-
       <section class="main_weather">
-          <h2 class="city">📍{{city}}</h2>
-          <p class="temperature">{{temperature}}°C</p>
-          <p class="condition"><span class="condition_icon">☀️</span>{{ condition }}</p>
-          <p class="feels_like">Feels like: {{feels_like}}°C</p>
+        <h2 class="city">📍{{ city }}</h2>
+        <p class="temperature">{{ temperature }}°C</p>
+        <p class="condition"><span class="condition_icon">☀️</span>{{ condition }}</p>
+        <p class="feels_like">Feels like: {{ feels_like }}°C</p>
 
         <div class="scroll_hint">
           <span>↓</span>
           <p>Scroll Down</p>
         </div>
       </section>
-    </div>
-    
-      <section class="detailed_weather{{theme}}">
-        <div class="detailed_weather_bg"></div>
-
-       <div class="detailed_weather_content">
-
-        <div class="card humidity-card">
-          <span class="label">Humidity</span>
-          <span class="value">{{ humidity }}%</span>
-        </div>
-
-        <div class="card visibility-card">
-          <span class="label">Visibility</span>
-          <span class="value">{{update_visibility }} km</span>
-        </div>
-
-        <div class="card wind-card">
-          <span class="label">Wind</span>
-          <span class="value">{{ wind_speed }} m/s</span>
-        </div>
-
-        <div class="card sunrise-card">
-          <span class="label">Sunrise</span>
-          <span class="value">{{ readable_sunrise }}</span>
-        </div>
-
-        <div class="card sunset-card">
-          <span class="label">Sunset</span>
-          <span class="value">{{ readable_sunset }}</span>
-        </div>
-
-        <div class="card rain-card">
-          <span class="label">Rain</span>
-          <span class="value">{{ rain }} mm</span>
-        </div>
-
-        <div class="card wind-direction-card">
-          <span class="label">Wind Direction</span>
-          <span class="value">{{ wind_dir }}°</span>
-        </div>
-
-       </div>
-      </section>
-
 
     </main>
 
-    <footer>
-      <p>&copy; 2026 FeelCast</p>
-    </footer>
+    <div class="wave_divider">
+      <svg viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,35 C360,100 1080,0 1440,45 L1440,100 L0,100 Z" />
+      </svg>
+    </div>
+
+  </div>
+
+  <section class="detailed_weather {{ theme }}">
+    <div class="detailed_weather_bg"></div>
+
+    <div class="detailed_weather_content">
+
+      <div class="section header">
+        <p class="section_label">DETAILED WEATHER</p>
+        <h2 class="section_title">More about today</h2>
+        <p class="section_subtitle">Get the complete weather information for a clearer picture of the day.</p>
+      </div>
+
+      <div class="card humidity-card">
+        <span class="label">Humidity</span>
+        <span class="value">{{ humidity }}%</span>
+      </div>
+
+      <div class="card visibility-card">
+        <span class="label">Visibility</span>
+        <span class="value">{{ update_visibility }} km</span>
+      </div>
+
+      <div class="card wind-card">
+        <span class="label">Wind</span>
+        <span class="value">{{ wind_speed }} m/s</span>
+      </div>
+
+      <div class="card sunrise-card">
+        <span class="label">Sunrise</span>
+        <span class="value">{{ readable_sunrise }}</span>
+      </div>
+
+      <div class="card sunset-card">
+        <span class="label">Sunset</span>
+        <span class="value">{{ readable_sunset }}</span>
+      </div>
+
+      <div class="card rain-card">
+        <span class="label">Rain</span>
+        <span class="value">{{ rain }} mm</span>
+      </div>
+
+      <div class="card wind-direction-card">
+        <span class="label">Wind Direction</span>
+        <span class="value">{{ wind_dir }}°</span>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 FeelCast</p>
+  </footer>
 
   </body>
+  
 
 </html>
+
+
+
+

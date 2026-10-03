@@ -20,16 +20,10 @@ def get_weather_info(appid, lat, lon, unit="metric"):
         "units": unit,
     }
 
-    try:
-        response = requests.get(url, parameters, timeout=5)
-        response.raise_for_status()
+    response = requests.get(url, parameters, timeout=5)
+    response.raise_for_status()
 
-        return response.json()
-
-    except requests.exceptions.HTTPError as http_err:
-        print(f"https error occured {http_err}")
-    except Exception as err:
-        print(f"error occured {err}")
+    return response.json()
 
 
 def get_geocoding_info(city_name, country_code="", api_key=""):
@@ -39,17 +33,10 @@ def get_geocoding_info(city_name, country_code="", api_key=""):
 
     parameters = {"q": q_param, "limit": 1, "appid": api_key}
 
-    try:
-        response = requests.get(url, parameters, timeout=5)
-        response.raise_for_status()
+    response = requests.get(url, parameters, timeout=5)
+    response.raise_for_status()
 
-        return response.json()
-
-    except requests.exceptions.HTTPError as http_err:
-        print(f"https error occured {http_err}")
-
-    except Exception as err:
-        print(f"error occured {err}")
+    return response.json()
 
 
 if __name__ == "__main__":

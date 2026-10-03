@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from weather import get_geocoding_info, get_weather_info
+import requests
 from dotenv import load_dotenv
 import os
 from utils import convert_unix_time, convert_meter_kilometre, get_theme
@@ -23,7 +24,22 @@ def search():
         return render_template("index.html", theme="sunny", error="Please enter a valid city name.")
     city = get_city
 
-    geocoding_results = get_geocoding_info(get_city, api_key= API_KEY)
+    if not API_KEY:
+        return render_template(
+            "index.html",
+            theme="sunny",
+            error="Weather API key is missing. Set WEATHER_API in your .env file and restart the server.",
+        )
+
+    try:
+        geocoding_results = get_geocoding_info(get_city, api_key=API_KEY)
+    except requests.RequestException as error:
+        app.logger.warning("Weather geocoding request failed (%s).", type(error).__name__)
+        return render_template(
+            "index.html",
+            theme="sunny",
+            error="Could not contact the weather service. Please try again.",
+        )
 
     if not geocoding_results:
         return render_template("index.html", theme="sunny", error="City not found. Please check the spelling and try again.")
@@ -31,8 +47,15 @@ def search():
     latitude = geocoding_results[0]["lat"]
     longitude = geocoding_results[0]["lon"]
 
-
-    weather_json = get_weather_info(API_KEY,latitude, longitude,)
+    try:
+        weather_json = get_weather_info(API_KEY, latitude, longitude)
+    except requests.RequestException as error:
+        app.logger.warning("Weather data request failed (%s).", type(error).__name__)
+        return render_template(
+            "index.html",
+            theme="sunny",
+            error="Could not load weather data. Please try again.",
+        )
 
     temperature = weather_json["main"]["temp"]
     condition = weather_json["weather"][0]["description"]
