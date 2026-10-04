@@ -336,6 +336,33 @@ body {
     font-weight: 700;
 }
 
+.section_header {
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.section_label {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 0 8px 0;
+}
+
+.section_title {
+    font-size: 28px;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+.secttion_subtitle {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+
+
 
 
 

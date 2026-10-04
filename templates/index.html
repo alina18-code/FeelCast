@@ -72,46 +72,86 @@
       </div>
 
       <div class="card humidity-card">
-        <span class="label">Humidity</span>
-        <span class="value">{{ humidity }}%</span>
+        <div class="card_top">
+          <span class="card_icon">💧</span>
+            <div>
+              <span class="label">Humidity</span>
+              <span class="value">{{ humidity }}%</span>
+            </div>
+        </div>
+        <p class="card_desc">The air has a moderate amount of moisture.</p>
       </div>
 
+      
+
       <div class="card visibility-card">
-        <span class="label">Visibility</span>
-        <span class="value">{{ update_visibility }} km</span>
+        <div class="card_top">
+          <span class="card_icon">👁</span>
+           <div>
+            <span class="label">Visibility</span>
+            <span class="value">{{ update_visibility }} km</span>
+           </div>
+        </div>
+        <p class="card_desc">Good Visibility. You can see clearly.</p>
       </div>
 
       <div class="card wind-card">
-        <span class="label">Wind</span>
-        <span class="value">{{ wind_speed }} m/s</span>
+        <div class="card_top">
+          <span class="card_icon">💨</span>
+          <div>
+            <span class="label">Wind</span>
+            <span class="value">{{ wind_speed }} m/s</span>
+          </div>
+          <p class="card_desc">A gentle breeze is blowing.</p>
+        </div>
       </div>
 
       <div class="card sunrise-card">
-        <span class="label">Sunrise</span>
-        <span class="value">{{ readable_sunrise }}</span>
+        <div class="card_top">
+          <span class="card_icon">🌅</span>
+          <div>
+            <span class="label">Sunrise</span>
+            <span class="value">{{ readable_sunrise }}</span>
+          </div>
+          <p class="card_desc">The sun rises to start the day.</p>
+        </div>
       </div>
 
       <div class="card sunset-card">
-        <span class="label">Sunset</span>
-        <span class="value">{{ readable_sunset }}</span>
+        <div class="card_top">
+          <span class="card_icon">🌇</span>
+          <div>
+            <span class="label">Sunset</span>
+            <span class="value">{{ readable_sunset }}</span>
+          </div>
+          <p class="card_desc">The sun sets to end the day.<</p>
+        </div>
       </div>
 
       <div class="card rain-card">
-        <span class="label">Rain</span>
-        <span class="value">{{ rain }} mm</span>
+        <div class="card_top">
+          <span class="card_icon">🌧</span>
+          <div>
+            <span class="label">Rain</span>
+            <span class="value">{{ rain }} mm</span>
+          </div>
+          <p class="card_desc">Current rainfall amount.</p>
+        </div>
       </div>
 
       <div class="card wind-direction-card">
-        <span class="label">Wind Direction</span>
-        <span class="value">{{ wind_dir }}°</span>
+        <div class="card_top">
+          <span class="card_icon">🧭</span>
+          <div>
+            <span class="label">Wind Direction</span>
+            <span class="value">{{ wind_dir }}°</span>
+          </div>
+          <p>Wind is coming from this direction.</p>
+        </div>
       </div>
 
     </div>
   </section>
-
-  <footer>
-    <p>&copy; 2026 FeelCast</p>
-  </footer>
 
   </body>
   
