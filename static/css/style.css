@@ -302,25 +302,6 @@ body {
 .detailed_weather.night .detailed_weather_bg 
 { background-image: url("/static/images/night_theme_image.png"); }
 
-.detailed_weather_content {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.card {
-  background-color: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
-  padding: 20px;
-  backdrop-filter: blur(10px);
-  text-align: center;
-
-}
 
 .section_header {
     text-align: left;
@@ -349,6 +330,14 @@ body {
 
 .card {
     text-align: left;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: rgba(20, 40, 55, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 14px;
+    padding: 18px;
+    backdrop-filter: blur(8px);
 }
 
 .card_top {
@@ -388,6 +377,20 @@ body {
   font-size: 13px;
   color: rgba(255, 255, 255, 0.6);
   margin: 0;
+  margin-top: auto;
+}
+
+.detailed_weather_content {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.cards_grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
 }
 
 
