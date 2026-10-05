@@ -387,12 +387,6 @@ body {
   margin: 0 auto;
 }
 
-.cards_grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-}
-
 .card_arrow {
   position: absolute;
   top: 14px;
@@ -400,6 +394,21 @@ body {
   font-size: 18px;
   color: rgba(255, 255, 255, 0.5);
 }
+
+.cards_grid_top {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.cards_grid_bottom {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+
 
 
 
