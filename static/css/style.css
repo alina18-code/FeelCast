@@ -334,9 +334,10 @@ body {
     flex-direction: column;
     background-color: rgba(20, 40, 55, 0.55);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 14px;
-    padding: 18px;
-    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    padding: 14px 16px;
+    min-height: 110px;
+    position: relative;
 }
 
 .card_top {
@@ -376,6 +377,7 @@ body {
   font-size: 13px;
   color: rgba(255, 255, 255, 0.6);
   margin: 8px 0 0 0;
+  line-height: 1.4;
 }
 
 .detailed_weather_content {
@@ -391,6 +393,13 @@ body {
     gap: 12px;
 }
 
+.card_arrow {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.5);
+}
 
 
 
