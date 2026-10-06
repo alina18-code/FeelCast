@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FeelCast</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <script src=""{{ url_for('static', filename='js/script.js') }}""></script>
   </head>
 
   <body>
@@ -74,16 +75,26 @@
 
         <div class="cards_grid_top">
 
-          <div class="card humidity-card">
-          <div class="card_top">
-          <span class="card_icon">💧</span>
-            <div>
-              <span class="label">Humidity</span>
-              <span class="value">{{ humidity }}%</span>
+          <div class="card_flip">
+            <div class="card_flip_inner">
+
+              <div class="card humidity-card card_front">
+                <div class="card_top">
+                  <span class="card_icon">💧</span>
+                  <div>
+                    <span class="label">Humidity</span>
+                    <span class="value">{{ humidity }}%</span>
+                  </div>
+                </div>
+                <span class="card_arrow"> > </span>
+                <p class="card_desc">The air has a moderate amount of moisture.</p>
+              </div>
+
+              <div class="card card_back">
+                <p>Humidity represents the amount of moisture currently present in the air.</p>
+              </div>
+
             </div>
-          </div>
-          <span class="card_arrow"> > </span>
-          <p class="card_desc">The air has a moderate amount of moisture.</p>
           </div>
 
           <div class="card visibility-card">
@@ -145,21 +156,21 @@
                 <span class="label">Sunset</span>
                 <span class="value">{{ readable_sunset }}</span>
               </div>
-            </div>
-            <span class="card_arrow"> > </span>
-            <p class="card_desc">The sun sets to end the day.</p>
+             </div>
+              <span class="card_arrow"> > </span>
+             <p class="card_desc">The sun sets to end the day.</p>
            </div>
 
             <div class="card rain-card">
-            <div class="card_top">
-            <span class="card_icon">🌧</span>
-            <div>
-              <span class="label">Rain</span>
-              <span class="value">{{ rain }} mm</span>
-            </div>
-            </div>
-           <span class="card_arrow"> > </span>
-            <p class="card_desc">Current rainfall amount.</p>
+             <div class="card_top">
+               <span class="card_icon">🌧</span>
+               <div>
+                 <span class="label">Rain</span>
+                 <span class="value">{{ rain }} mm</span>
+                </div>
+               </div>
+              <span class="card_arrow"> > </span>
+              <p class="card_desc">Current rainfall amount.</p>
             </div>
 
         </div>
