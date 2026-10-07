@@ -470,3 +470,29 @@ body {
   text-align: center;
   font-size: 13px;
 }
+
+.card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 12%;
+  width: 76%;
+  height: 1px;
+
+  background: rgba(255, 255, 255, 0.18);
+
+  pointer-events: none;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 12%;
+  width: 76%;
+  height: 1px;
+
+  background: rgba(255, 255, 255, 0.18);
+
+  pointer-events: none;
+}
