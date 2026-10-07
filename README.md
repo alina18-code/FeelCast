@@ -1,6 +1,6 @@
 # FeelCast 🌦️
 
-> **Don't just see the weather — feel it.**
+> **Don't just see the weather — feel the weather.**
 
 FeelCast is a weather web application that turns live weather data into a more immersive experience. Instead of showing only numbers and forecasts, FeelCast adapts its visual atmosphere to the weather so each condition has its own feeling.
 
