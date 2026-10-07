@@ -497,3 +497,164 @@ body {
 
   pointer-events: none;
 }
+
+@media (max-width: 768px) {
+
+}
+
+@media (max-width: 768px) {
+
+  .cards_grid_top {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+  .cards_grid_bottom {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 480px) {
+
+  .cards_grid_top,
+  .cards_grid_bottom {
+      grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+  .temperature {
+     font-size: 56px;
+    }
+
+}
+
+.detailed_weather_content {
+    width: calc(100% - 32px);
+    margin: 0 auto;
+}
+
+
+@media (max-width: 600px) {
+
+    
+    header {
+        padding: 20px 18px;
+    }
+
+    .app {
+        font-size: 28px;
+    }
+
+    #sound_toggle {
+        font-size: 18px;
+    }
+
+
+    
+    .search_section {
+        width: calc(100% - 32px);
+        margin: 0 auto;
+    }
+
+    .search_section form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .search_section input {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .search_section button {
+        width: 100%;
+    }
+
+
+    
+    .main_weather {
+        width: calc(100% - 32px);
+        margin: 40px auto 0;
+        text-align: center;
+    }
+
+    .city {
+        font-size: 24px;
+    }
+
+    .temperature {
+        font-size: 58px;
+    }
+
+    .condition {
+        font-size: 18px;
+    }
+
+    .feels_like {
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+
+    
+    header {
+        padding: 24px 30px;
+    }
+
+    .app {
+        font-size: 30px;
+    }
+
+    #sound_toggle {
+        font-size: 20px;
+    }
+
+  
+    .search_section {
+        width: calc(100% - 60px);
+        margin: 0 auto;
+    }
+
+    .search_section form {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .search_section input {
+        flex: 1;
+        box-sizing: border-box;
+    }
+
+    .search_section button {
+        width: auto;
+    }
+
+    /* Main weather */
+    .main_weather {
+        width: calc(100% - 60px);
+        margin: 55px auto 0;
+        text-align: center;
+    }
+
+    .city {
+        font-size: 28px;
+    }
+
+    .temperature {
+        font-size: 72px;
+    }
+
+    .condition {
+        font-size: 20px;
+    }
+
+    .feels_like {
+        font-size: 16px;
+    }
+}
