@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FeelCast</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <audio id="weather_audio" loop data-theme="{{ theme }}"></audio>
     <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
   </head>
 
@@ -18,7 +19,7 @@
         <p class="tagline">Feel the weather</p>
       </div>
       <button id="sound_toggle" type="button" aria-label="toggle_sound">
-        🔊 sound on
+        <span id="sound_icon">🔇</span> <span id="sound_text">Sound off</span>
       </button>
     </header>
 
