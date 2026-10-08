@@ -418,7 +418,7 @@ body {
   display: grid;
   grid-template-columns: repeat(4,1fr);
   gap: 14px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .cards_grid_bottom {
@@ -433,7 +433,8 @@ body {
   min-height: 130px;
   width: 100%;
   box-sizing: border-box;
-
+  position: relative;
+  z-index: 1;
 }
 
 .card_flip_inner {
@@ -460,6 +461,7 @@ body {
   backface-visibility: hidden;
   cursor: pointer;
   box-sizing: border-box;
+  margin-bottom: 30px ;
 
 }
 

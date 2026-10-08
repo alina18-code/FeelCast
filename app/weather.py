@@ -2,12 +2,9 @@ from dotenv import load_dotenv
 import os
 import requests
 from utils import convert_unix_time, convert_meter_kilometre
-
 load_dotenv()
 
 api_key = os.getenv("WEATHER_API")
-
-# print(f"API key loaded finally: {api_key is not None} ")
 
 
 def get_weather_info(appid, lat, lon, unit="metric"):

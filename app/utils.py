@@ -94,7 +94,7 @@ def describe_wind_direction(degrees):
     directions = ["North", "Northeast", "East", "Southeast", "South", "Southwest", "West", "Northwest"]
     index = round(degrees / 45) % 8
     compass = directions[index]
-    return f"The wind is currently blowing in from the {compass}, at a heading of roughly {degrees}°. Wind direction can hint at incoming weather changes, since many weather systems move in predictable patterns relative to their origin."
+    return f"The wind is currently blowing in from the {compass}, at a heading of roughly {degrees}°. Direction can shift as weather systems move, so it's worth checking again later."
 
 
 def describe_sunrise(readable_sunrise):

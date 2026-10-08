@@ -3,7 +3,8 @@ from weather import get_geocoding_info, get_weather_info
 import requests
 from dotenv import load_dotenv
 import os
-from utils import convert_unix_time, convert_meter_kilometre, get_theme
+from utils import convert_unix_time, convert_meter_kilometre, get_theme, describe_humidity, describe_rain, describe_sunrise, describe_sunset, describe_visibility, describe_wind, describe_wind_direction
+
 
 load_dotenv ()
 
@@ -78,8 +79,6 @@ def search():
     if is_night and condition_main in ["Clear", "Clouds"]:
         theme = "night"
 
-    print(theme)
-
     wind_speed = weather_json["wind"]["speed"]
     wind_dir = weather_json["wind"]["deg"]
 
@@ -88,6 +87,14 @@ def search():
 
     rain_data = weather_json.get("rain", {})
     rain = rain_data.get("1h", 0)
+
+    humidity_desc = describe_humidity(humidity)
+    visibility_desc = describe_visibility(float(update_visibility))
+    wind_desc = describe_wind(wind_speed)
+    rain_desc = describe_rain(rain)
+    wind_dir_desc = describe_wind_direction(wind_dir)
+    sunrise_desc = describe_sunrise(readable_sunrise)
+    sunset_desc = describe_sunset(readable_sunset)
 
 
 
@@ -105,6 +112,13 @@ def search():
         update_visibility = update_visibility,
         rain = rain,
         theme = theme,
+        humidity_desc = humidity_desc,
+        visibility_desc = visibility_desc,
+        wind_desc = wind_desc,
+        rain_desc = rain_desc,
+        wind_dir_desc = wind_dir_desc,
+        sunrise_desc = sunrise_desc,
+        sunset_desc = sunset_desc,
     )
 
 
