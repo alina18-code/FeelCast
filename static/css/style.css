@@ -498,9 +498,6 @@ body {
   pointer-events: none;
 }
 
-@media (max-width: 768px) {
-
-}
 
 @media (max-width: 768px) {
 
@@ -544,7 +541,7 @@ body {
         padding: 20px 18px;
     }
 
-    .app {
+    .app_name {
         font-size: 28px;
     }
 
@@ -657,4 +654,39 @@ body {
     .feels_like {
         font-size: 16px;
     }
+}
+
+@media (max-width: 600px) {
+
+  .wave_divider svg {
+    height: 60px;
+  }
+
+  .scroll_hint {
+    bottom: 60px;
+  }
+
+  .card_icon {
+    width: 28px;
+    height: 28px;
+    font-size: 13px;
+  }
+
+  .card {
+    padding: 12px 14px;
+  }
+
+  .card_flip,
+  .card_flip_inner {
+    min-height: 100px;
+  }
+
+  footer {
+    padding: 20px;
+    font-size: 13px;
+     text-align: center;
+  }
+
+
+  
 }
