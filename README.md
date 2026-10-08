@@ -33,23 +33,34 @@ FeelCast is a weather web application that turns live weather data into a more i
 
 ## 📁 Project Structure
 
-```text
-FeelCast/
-├── app.py
-├── weather.py
-├── themes.py
-├── requirements.txt
-├── .env
+Weather website/
+│
+├── app/
+│   ├── __init__.py
+│   ├── routes.py          # Flask routes and request handling
+│   ├── weather.py         # Geocoding and weather API calls
+│   └── utils.py           # Helper functions (time formatting, theme mapping, etc.)
+│
+├── static/
+│   ├── css/
+│   │   └── style.css
+│   ├── js/
+│   │   └── script.js
+│   └── images/
+│       ├── sunny_theme_image.png
+│       ├── cloudy_theme_image.png
+│       ├── rain_theme_image.png
+│       ├── snow_theme_image.png
+│       ├── storm_theme_image.png
+│       └── night_theme_image.png
+│
 ├── templates/
 │   └── index.html
-└── static/
-    ├── css/
-    │   └── style.css
-    ├── js/
-    │   └── script.js
-    ├── images/
-    └── audio/
-```
+│
+├── .env                    # API key (not committed)
+├── .gitignore
+├── requirements.txt
+└── README.md
 
 ## 🚀 Getting Started
 
