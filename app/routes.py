@@ -143,7 +143,7 @@ def autocomplete():
             else:
                 label = f"{name}, {country}"
 
-            suggestions.append(label)
+            suggestions.append({"name": name, "label": label})
 
         return jsonify(suggestions)
 

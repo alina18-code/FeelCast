@@ -85,3 +85,53 @@ if (soundToggle && soundIcon && soundText && audio) {
       });
   });
 }
+
+
+const cityInput = document.getElementById('city-input');
+const suggestionsList = document.getElementById('suggestions_list');
+let debounceTimer;
+
+cityInput.addEventListener('input', () => {
+  clearTimeout(debounceTimer);
+  const query = cityInput.value.trim();
+
+  if (query.length < 2) {
+    suggestionsList.innerHTML = '';
+    return;
+  }
+
+  debounceTimer = setTimeout(() => {
+    fetch(`/autocomplete?q=${query}`)
+      .then(response => response.json())
+      .then(data => {
+        suggestionsList.innerHTML = '';
+
+        if (data.length === 0) return;
+
+        const dropdown = document.createElement('div');
+        dropdown.classList.add('suggestions_dropdown');
+
+        data.forEach(place => {
+          const item = document.createElement('div');
+          item.classList.add('suggestion_item');
+          item.textContent = place.label;
+
+          item.addEventListener('click', () => {
+            cityInput.value = place.name;
+            suggestionsList.innerHTML = '';
+          });
+
+          dropdown.appendChild(item);
+        });
+
+        suggestionsList.appendChild(dropdown);
+      });
+  }, 300);
+});
+
+
+document.addEventListener('click', (event) => {
+  if (!cityInput.contains(event.target) && !suggestionsList.contains(event.target)) {
+    suggestionsList.innerHTML = '';
+  }
+});

@@ -30,9 +30,15 @@
         <form action="/search" method="POST" class="search_form">
           <div class="search_bar">
             <span class="search_icon">📍</span>
-            <input type="text" id="city-input" name="city" placeholder="Enter a city name" required />
+            <input type="text" 
+            id="city-input" 
+            name="city" 
+            placeholder="Enter a city name" 
+            autocomplete="off"
+            required />
             <button type="submit">🔎 search</button>
           </div>
+          <div id="suggestions_list" class="suggestions_list"></div>
         </form>
 
         {% if error %}
