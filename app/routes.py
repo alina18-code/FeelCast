@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from weather import get_geocoding_info, get_weather_info
 import requests
 from dotenv import load_dotenv
@@ -97,7 +97,6 @@ def search():
     sunset_desc = describe_sunset(readable_sunset)
 
 
-
     return render_template(
         "index.html",
         city = city,
@@ -120,6 +119,33 @@ def search():
         sunrise_desc = sunrise_desc,
         sunset_desc = sunset_desc,
     )
+
+@app.route("/autocomplete")
+def autocomplete():
+        query = request.args.get("q", "")
+
+        if len(query.strip()) < 2:
+            return jsonify([])
+
+        results = get_geocoding_info(query, api_key=API_KEY, limit=5)
+
+        if not results:
+            return jsonify([])
+
+        suggestions = []
+        for place in results:
+            name = place.get("name")
+            country = place.get("country")
+            state = place.get("state")
+
+            if state:
+                label = f"{name}, {state}, {country}"
+            else:
+                label = f"{name}, {country}"
+
+            suggestions.append(label)
+
+        return jsonify(suggestions)
 
 
 if __name__ == "__main__":

@@ -23,12 +23,12 @@ def get_weather_info(appid, lat, lon, unit="metric"):
     return response.json()
 
 
-def get_geocoding_info(city_name, country_code="", api_key=""):
+def get_geocoding_info(city_name, country_code="", api_key="", limit=1):
     url = "http://api.openweathermap.org/geo/1.0/direct?"
 
     q_param = f"{city_name},{country_code}".strip(",")
 
-    parameters = {"q": q_param, "limit": 1, "appid": api_key}
+    parameters = {"q": q_param, "limit": limit, "appid": api_key}
 
     response = requests.get(url, parameters, timeout=5)
     response.raise_for_status()

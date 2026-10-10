@@ -11,23 +11,77 @@ const soundIcon = document.getElementById('sound_icon');
 const soundText = document.getElementById('sound_text');
 const audio = document.getElementById('weather_audio');
 
-const currentTheme = audio.dataset.theme;
-audio.src = `/static/audio/${currentTheme}.mp3`;
-const audio = document.getElementById('weather_audio');
-audio.volume = 0.3;
+if (soundToggle && soundIcon && soundText && audio) {
+  const currentTheme = audio.dataset.theme;
+  const audioExtension = currentTheme === 'storm' ? 'wav' : 'mp3';
+  audio.src = `/static/audio/${currentTheme}.${audioExtension}`;
+  audio.volume = 0;
 
-let isSoundOn = false;
+  const targetVolume = 0.3;
+  const fadeDuration = 250;
+  let isSoundOn = false;
+  let fadeFrame = 0;
+  let playbackRequest = 0;
 
-soundToggle.addEventListener('click', () => {
-  isSoundOn = !isSoundOn;
+  const updateSoundControl = () => {
+    soundToggle.setAttribute('aria-pressed', String(isSoundOn));
+    soundToggle.setAttribute('aria-label', isSoundOn ? 'Turn weather sound off' : 'Turn weather sound on');
+    soundIcon.textContent = isSoundOn ? '🔊' : '🔇';
+    soundText.textContent = isSoundOn ? 'Sound On' : 'Sound Off';
+  };
 
-  if (isSoundOn) {
-    soundIcon.textContent = '🔊';
-    soundText.textContent = 'Sound On';
-    audio.play();
-  } else {
-    soundIcon.textContent = '🔇';
-    soundText.textContent = 'Sound Off';
-    audio.pause();
-  }
-});
+  const fadeVolume = (target, pauseWhenSilent = false) => {
+    cancelAnimationFrame(fadeFrame);
+    const startingVolume = audio.volume;
+    const startTime = performance.now();
+
+    const animate = (currentTime) => {
+      const progress = Math.min((currentTime - startTime) / fadeDuration, 1);
+      audio.volume = startingVolume + (target - startingVolume) * progress;
+
+      if (progress < 1) {
+        fadeFrame = requestAnimationFrame(animate);
+      } else {
+        fadeFrame = 0;
+        if (pauseWhenSilent && !isSoundOn) {
+          audio.pause();
+        }
+      }
+    };
+
+    fadeFrame = requestAnimationFrame(animate);
+  };
+
+  updateSoundControl();
+  soundToggle.addEventListener('click', () => {
+    const currentRequest = ++playbackRequest;
+    isSoundOn = !isSoundOn;
+    updateSoundControl();
+
+    if (!isSoundOn) {
+      fadeVolume(0, true);
+      return;
+    }
+
+    audio.play()
+      .then(() => {
+        if (currentRequest !== playbackRequest) {
+          return;
+        }
+
+        if (isSoundOn) {
+          fadeVolume(targetVolume);
+        } else {
+          audio.pause();
+        }
+      })
+      .catch((error) => {
+        if (currentRequest === playbackRequest && isSoundOn) {
+          isSoundOn = false;
+          updateSoundControl();
+          fadeVolume(0, true);
+          console.error('Weather sound could not be played.', error);
+        }
+      });
+  });
+}
