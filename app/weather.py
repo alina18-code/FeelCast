@@ -36,6 +36,19 @@ def get_geocoding_info(city_name, country_code="", api_key="", limit=1):
     return response.json()
 
 
+def get_forecast_weather (lat, lon, api_key=""):
+    url = "https://api.openweathermap.org/data/2.5/forecast"
+
+    parameters = {"lat": lat, "lon": lon, "units": "matric", "appid": api_key }
+
+    response = requests.get(url, parameters, timeout=5)
+    response.raise_for_status()
+    
+    return response.json()
+
+    
+
+
 if __name__ == "__main__":
         API_Key = api_key
         city_name = "karachi"

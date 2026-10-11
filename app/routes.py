@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from weather import get_geocoding_info, get_weather_info
+from weather import get_geocoding_info, get_weather_info, get_forecast_weather
 import requests
 from dotenv import load_dotenv
 import os
@@ -96,6 +96,16 @@ def search():
     sunrise_desc = describe_sunrise(readable_sunrise)
     sunset_desc = describe_sunset(readable_sunset)
 
+    forecast_json = get_forecast_weather(latitude, longitude, api_key=API_KEY)
+
+    hourly_forecast = []
+    for entry in forecast_json["list"][:8]:
+        time_label = convert_unix_time(entry["dt"])
+        temp_kelvin = entry["main"]["temp"]
+        temp_celsius = round(temp_kelvin - 273.15) if temp_kelvin > 100 else round(temp_kelvin)
+        hourly_forecast.append({"time": time_label, "temp": temp_celsius})
+    print(hourly_forecast)
+
 
     return render_template(
         "index.html",
@@ -118,6 +128,7 @@ def search():
         wind_dir_desc = wind_dir_desc,
         sunrise_desc = sunrise_desc,
         sunset_desc = sunset_desc,
+        hourly_forecast = hourly_forecast
     )
 
 @app.route("/autocomplete")
