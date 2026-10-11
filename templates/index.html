@@ -251,20 +251,47 @@
                 <h2 class="section_title">Today at a glance</h2>
                 <p class="section_subtitle">See how the temperature changes throughout the day.</p>
               </div>
+              <div class="graph_container">
+                <svg viewBox="0 0 700 150" preserveAspectRatio="none" class="temp_graph">
 
-              <div class="hourly_scroll">
-                {% for hour in hourly_forecast %}
-                  <div class="hour_card">
-                    <span class="hour_time">{{ hour.time }}</span>
-                    <span class="hour_temp">{{ hour.temp }}°</span>
-                  </div>
-                {% endfor %}
+                  <polyline
+                    points="{{ polyline_points }}"
+                    fill="none"
+                    stroke="url(#tempGradient)"
+                    stroke-width="3"
+                  />
+
+                  <defs>
+                    <linearGradient id="tempGradient" x1="0" y1="0" x2="1" y2="0">
+                      <stop offset="0%" stop-color="#4fc3f7" />
+                      <stop offset="50%" stop-color="#ffca28" />
+                      <stop offset="100%" stop-color="#4fc3f7" />
+                    </linearGradient>
+                  </defs>
+
+                  {% for point in graph_points %}
+                    <circle cx="{{ point.x }}" cy="{{ point.y }}" r="4" fill="#ffffff" />
+                  {% endfor %}
+
+                </svg>
+
+                <div class="graph_labels">
+                  {% for hour in hourly_forecast %}
+                    <div class="graph_label">
+                      <span class="graph_temp">{{ hour.temp }}°</span>
+                      <span class="graph_icon">{{ hour.icon }}</span>
+                      <span class="graph_time">{{ hour.time }}</span>
+                    </div>
+                  {% endfor %}
+                </div>
               </div>
-              </div>
+
+
+              
               
             </div>
           </section>
-          
+
         </div>
         
     </div>
