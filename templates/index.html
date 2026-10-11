@@ -243,6 +243,28 @@
             </div>
           </div>
 
+          <section class="hourly_forecast {{theme}}">
+            <div class="hourly_forecast_bg"></div>
+            <div class="hourly_forecast_content">
+              <div class="header_section">
+                <p class="section_label">HOURLY FORECAST</p>
+                <h2 class="section_title">Today at a glance</h2>
+                <p class="section_subtitle">See how the temperature changes throughout the day.</p>
+              </div>
+
+              <div class="hourly_scroll">
+                {% for hour in hourly_forecast %}
+                  <div class="hour_card">
+                    <span class="hour_time">{{ hour.time }}</span>
+                    <span class="hour_temp">{{ hour.temp }}°</span>
+                  </div>
+                {% endfor %}
+              </div>
+              </div>
+              
+            </div>
+          </section>
+          
         </div>
         
     </div>

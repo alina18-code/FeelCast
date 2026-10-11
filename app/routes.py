@@ -103,8 +103,27 @@ def search():
         time_label = convert_unix_time(entry["dt"])
         temp_kelvin = entry["main"]["temp"]
         temp_celsius = round(temp_kelvin - 273.15) if temp_kelvin > 100 else round(temp_kelvin)
-        hourly_forecast.append({"time": time_label, "temp": temp_celsius})
+        is_entry_night = entry["dt"] < sunrise or entry["dt"] > sunset
+        icon = "🌙" if is_entry_night else "☀️"
+        hourly_forecast.append({"time": time_label, "temp": temp_celsius, "icon": icon})
     print(hourly_forecast)
+
+    temps = [hour["temp"] for hour in hourly_forecast]
+    min_temp = min(temps)
+    max_temp = max(temps)
+    temp_range = max_temp - min_temp if max_temp != min_temp else 1
+
+    graph_width = 700
+    graph_height = 150
+    point_spacing = graph_width / (len(hourly_forecast) - 1)
+
+    graph_points = []
+    for i, hour in enumerate(hourly_forecast):
+        x = round(i * point_spacing)
+        y = round(graph_height - ((hour["temp"] - min_temp) / temp_range) * graph_height)
+        graph_points.append({"x": x, "y": y})
+
+    polyline_points = " ".join([f"{p['x']},{p['y']}" for p in graph_points])
 
 
     return render_template(
@@ -128,7 +147,9 @@ def search():
         wind_dir_desc = wind_dir_desc,
         sunrise_desc = sunrise_desc,
         sunset_desc = sunset_desc,
-        hourly_forecast = hourly_forecast
+        hourly_forecast = hourly_forecast, 
+        graph_points = graph_points,
+        polyline_points = polyline_points
     )
 
 @app.route("/autocomplete")
