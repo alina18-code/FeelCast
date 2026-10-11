@@ -4,7 +4,7 @@ import requests
 from dotenv import load_dotenv
 import os
 from utils import convert_unix_time, convert_meter_kilometre, get_theme, describe_humidity, describe_rain, describe_sunrise, describe_sunset, describe_visibility, describe_wind, describe_wind_direction
-
+from datetime import datetime
 
 load_dotenv ()
 
@@ -103,8 +103,9 @@ def search():
         time_label = convert_unix_time(entry["dt"])
         temp_kelvin = entry["main"]["temp"]
         temp_celsius = round(temp_kelvin - 273.15) if temp_kelvin > 100 else round(temp_kelvin)
-        is_entry_night = entry["dt"] < sunrise or entry["dt"] > sunset
-        icon = "🌙" if is_entry_night else "☀️"
+        entry_hour = datetime.fromtimestamp(entry["dt"]).hour
+        icon = "🌙" if entry_hour < 6 or entry_hour >= 19 else "☀️"
+
         hourly_forecast.append({"time": time_label, "temp": temp_celsius, "icon": icon})
     print(hourly_forecast)
 
@@ -124,6 +125,7 @@ def search():
         graph_points.append({"x": x, "y": y})
 
     polyline_points = " ".join([f"{p['x']},{p['y']}" for p in graph_points])
+    print(polyline_points)
 
 
     return render_template(
