@@ -253,12 +253,32 @@
               </div>
               <div class="graph_container">
                 <svg viewBox="0 0 700 150" preserveAspectRatio="none" class="temp_graph">
+                  <text x="4" y="25" class="graph_axis_label">40°</text>
+                  <text x="4" y="75" class="graph_axis_label">30°</text>
+                  <text x="4" y="125" class="graph_axis_label">20°</text>
+
+                  {% for point in graph_points %}
+                    <line
+                      x1="{{ point.x }}"
+                      y1="{{ point.y + 6 }}"
+                      x2="{{ point.x }}"
+                      y2="132"
+                      class="graph_guide"
+                    />
+                    <text
+                      x="{{ point.x }}"
+                      y="{{ point.y - 12 }}"
+                      class="graph_temp_label"
+                    >{{ hourly_forecast[loop.index0].temp }}°</text>
+                  {% endfor %}
 
                   <polyline
                     points="{{ polyline_points }}"
                     fill="none"
                     stroke="url(#tempGradient)"
                     stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
                   />
 
                   <defs>
@@ -278,7 +298,6 @@
                 <div class="graph_labels">
                   {% for hour in hourly_forecast %}
                     <div class="graph_label">
-                      <span class="graph_temp">{{ hour.temp }}°</span>
                       <span class="graph_icon">{{ hour.icon }}</span>
                       <span class="graph_time">{{ hour.time }}</span>
                     </div>
@@ -302,5 +321,4 @@
   
 
 </html>
-
 

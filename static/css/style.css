@@ -738,36 +738,54 @@ body {
 
 .temp_graph {
   width: 100%;
-  height: 220px;
+  height: 134px;
   display: block;
+}
+
+.graph_axis_label,
+.graph_temp_label {
+  fill: rgba(255, 255, 255, 0.85);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+}
+
+.graph_temp_label {
+  font-weight: 600;
+  text-anchor: middle;
+}
+
+.graph_guide {
+  stroke: #ffffff;
+  stroke-opacity: 0.14;
+  stroke-width: 1;
 }
 
 .graph_labels {
   display: flex;
   justify-content: space-between;
-  margin-top: 14px;
+  margin-top: 0;
 }
 
 .graph_label {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 0;
   font-size: 12px;
   color: rgba(255, 255, 255, 0.85);
   flex: 1;
   min-width: 0;
 }
 
-.graph_temp {
-  font-weight: 700;
-  font-size: 14px;
+.graph_icon {
+  line-height: 18px;
 }
 
 .graph_time {
   white-space: nowrap;
-  font-size: 10px;
-  color: rgba(255, 255, 255, 0.6);
+  font-size: 12px;
+  line-height: 14px;
+  color: rgba(255, 255, 255, 0.85);
 }
 
 
@@ -793,5 +811,12 @@ body {
   background-color: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 16px;
-  padding: 24px;
+  padding: 14px 24px 12px;
+}
+
+@media (min-width: 1080px) {
+  .hourly_forecast .graph_container {
+    max-width: 1040px;
+    margin: 0 auto;
+  }
 }
