@@ -752,6 +752,7 @@ body {
 .graph_temp_label {
   font-weight: 600;
   text-anchor: middle;
+  
 }
 
 .graph_guide {
@@ -823,4 +824,9 @@ body {
     max-width: 1040px;
     margin: 0 auto;
   }
+}
+
+.hourly_forecast_content .header_section {
+  margin-top: 20px;
+  margin-bottom: 30px;
 }

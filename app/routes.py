@@ -114,7 +114,8 @@ def search():
     max_temp = max(temps)
     temp_range = max_temp - min_temp if max_temp != min_temp else 1
 
-    graph_width = 700
+    graph_left_margin = 45
+    graph_width = 630
     graph_height = 150
     point_spacing = graph_width / (len(hourly_forecast) - 1)
 
@@ -125,7 +126,6 @@ def search():
         graph_points.append({"x": x, "y": y})
 
     polyline_points = " ".join([f"{p['x']},{p['y']}" for p in graph_points])
-    print(polyline_points)
 
 
     return render_template(
