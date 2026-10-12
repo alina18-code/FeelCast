@@ -135,3 +135,43 @@ document.addEventListener('click', (event) => {
     suggestionsList.innerHTML = '';
   }
 });
+
+document.querySelectorAll('.temp_graph polyline').forEach((polyline) => {
+  const points = (polyline.getAttribute('points') || '')
+    .trim()
+    .split(/\s+/)
+    .map((point) => point.split(',').map(Number))
+    .filter((point) => point.length === 2 && point.every(Number.isFinite));
+
+  if (points.length < 3) {
+    return;
+  }
+
+  let pathData = `M ${points[0][0]} ${points[0][1]}`;
+
+  for (let index = 0; index < points.length - 1; index += 1) {
+    const previous = points[Math.max(index - 1, 0)];
+    const current = points[index];
+    const next = points[index + 1];
+    const following = points[Math.min(index + 2, points.length - 1)];
+    const control1 = [
+      current[0] + (next[0] - previous[0]) / 6,
+      current[1] + (next[1] - previous[1]) / 6,
+    ];
+    const control2 = [
+      next[0] - (following[0] - current[0]) / 6,
+      next[1] - (following[1] - current[1]) / 6,
+    ];
+
+    pathData += ` C ${control1[0]} ${control1[1]}, ${control2[0]} ${control2[1]}, ${next[0]} ${next[1]}`;
+  }
+
+  const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  Array.from(polyline.attributes).forEach((attribute) => {
+    if (attribute.name !== 'points') {
+      path.setAttribute(attribute.name, attribute.value);
+    }
+  });
+  path.setAttribute('d', pathData);
+  polyline.replaceWith(path);
+});
