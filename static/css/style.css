@@ -875,9 +875,12 @@ body {
 }
 
 footer {
+  position: relative;
+  z-index: 1;
   text-align: center;
-  padding: 40px 20px;
+  padding: 40px 20px 20px 20px;
   color: rgba(255, 255, 255, 0.8);
+  margin-top: 40px;
 }
 
 .footer_brand {
