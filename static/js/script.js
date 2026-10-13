@@ -189,3 +189,37 @@ document.querySelectorAll('.temp_graph polyline').forEach((polyline) => {
   polyline.before(area);
   polyline.replaceWith(path);
 });
+
+function createWeatherParticles(theme) {
+  const container = document.getElementById('weather_particles');
+  if (!container) return;
+
+  container.innerHTML = '';
+
+  if (theme === 'rain' || theme === 'storm') {
+    for (let i = 0; i < 60; i++) {
+      const drop = document.createElement('div');
+      drop.classList.add('raindrop');
+      drop.style.left = `${Math.random() * 100}%`;
+      drop.style.animationDuration = `${0.5 + Math.random() * 0.5}s`;
+      drop.style.animationDelay = `${Math.random() * 2}s`;
+      container.appendChild(drop);
+    }
+  }
+
+  if (theme === 'snow') {
+    for (let i = 0; i < 40; i++) {
+      const flake = document.createElement('div');
+      flake.classList.add('snowflake');
+      flake.textContent = '❄';
+      flake.style.left = `${Math.random() * 100}%`;
+      flake.style.fontSize = `${8 + Math.random() * 10}px`;
+      flake.style.animationDuration = `${6 + Math.random() * 6}s`;
+      flake.style.animationDelay = `${Math.random() * 5}s`;
+      container.appendChild(flake);
+    }
+  }
+}
+
+const currentPageTheme = document.querySelector('.main_page').classList[1];
+createWeatherParticles(currentPageTheme);

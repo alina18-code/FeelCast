@@ -825,3 +825,73 @@ body {
   margin-top: 20px;
   margin-bottom: 30px;
 }
+
+.weather_particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.raindrop {
+  position: absolute;
+  width: 2px;
+  height: 18px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.6));
+  top: -20px;
+  animation: fall linear infinite;
+}
+
+.snowflake {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.85);
+  top: -20px;
+  animation: fall-sway linear infinite;
+}
+
+@keyframes fall {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(110vh);
+  }
+}
+
+@keyframes fall-sway {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(20px, 55vh);
+  }
+  100% {
+    transform: translate(0, 110vh);
+  }
+}
+
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.footer_brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.footer_tagline {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}

@@ -107,7 +107,7 @@ def search():
         icon = "🌙" if entry_hour < 6 or entry_hour >= 19 else "☀️"
 
         hourly_forecast.append({"time": time_label, "temp": temp_celsius, "icon": icon})
-    print(hourly_forecast)
+
 
     temps = [hour["temp"] for hour in hourly_forecast]
     graph_axis_min = (min(temps) // 5 - 1) * 5
@@ -176,6 +176,7 @@ def search():
         graph_plot_right = graph_plot_right,
         polyline_points = polyline_points
     )
+
 
 @app.route("/autocomplete")
 def autocomplete():
