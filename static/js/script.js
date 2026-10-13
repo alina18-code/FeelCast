@@ -162,6 +162,10 @@ document.querySelectorAll('.temp_graph polyline').forEach((polyline) => {
       next[0] - (following[0] - current[0]) / 6,
       next[1] - (following[1] - current[1]) / 6,
     ];
+    const segmentMinY = Math.min(current[1], next[1]);
+    const segmentMaxY = Math.max(current[1], next[1]);
+    control1[1] = Math.min(Math.max(control1[1], segmentMinY), segmentMaxY);
+    control2[1] = Math.min(Math.max(control2[1], segmentMinY), segmentMaxY);
 
     pathData += ` C ${control1[0]} ${control1[1]}, ${control2[0]} ${control2[1]}, ${next[0]} ${next[1]}`;
   }
@@ -173,5 +177,15 @@ document.querySelectorAll('.temp_graph polyline').forEach((polyline) => {
     }
   });
   path.setAttribute('d', pathData);
+  path.setAttribute('class', 'graph_curve');
+
+  const area = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  area.setAttribute(
+    'd',
+    `${pathData} L ${points[points.length - 1][0]} 150 L ${points[0][0]} 150 Z`
+  );
+  area.setAttribute('fill', 'url(#tempAreaGradient)');
+  area.setAttribute('class', 'graph_area');
+  polyline.before(area);
   polyline.replaceWith(path);
 });

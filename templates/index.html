@@ -254,23 +254,40 @@
                 <p class="section_subtitle">See how the temperature changes throughout the day.</p>
               </div>
               <div class="graph_container">
-                <svg viewBox="0 0 700 150" preserveAspectRatio="none" class="temp_graph">
-                  <text x="4" y="25" class="graph_axis_label">40°</text>
-                  <text x="4" y="75" class="graph_axis_label">30°</text>
-                  <text x="4" y="125" class="graph_axis_label">20°</text>
+                <svg
+                  viewBox="0 0 700 220"
+                  preserveAspectRatio="none"
+                  class="temp_graph"
+                  role="img"
+                  aria-label="Hourly temperature forecast"
+                >
+                  {% for tick in graph_axis_ticks %}
+                    <line
+                      x1="48"
+                      y1="{{ tick.y }}"
+                      x2="690"
+                      y2="{{ tick.y }}"
+                      class="graph_guide"
+                    />
+                    <text
+                      x="40"
+                      y="{{ tick.y }}"
+                      class="graph_axis_label"
+                      text-anchor="end"
+                      dominant-baseline="middle"
+                    >{{ tick.value }}°</text>
+                  {% endfor %}
 
                   {% for point in graph_points %}
                     <text
                       x="{{ point.x }}"
-                      y="{{ point.y - 12 }}"
+                      y="{{ [point.y - 12, 22] | max }}"
                       class="graph_temp_label"
                     >{{ hourly_forecast[loop.index0].temp }}°</text>
                   {% endfor %}
 
-              
-                    
-
                   <polyline
+                    class="graph_curve"
                     points="{{ polyline_points }}"
                     fill="none"
                     stroke="url(#tempGradient)"
@@ -282,25 +299,37 @@
                   <defs>
                     <linearGradient id="tempGradient" x1="0" y1="0" x2="1" y2="0">
                       <stop offset="0%" stop-color="#4fc3f7" />
-                      <stop offset="50%" stop-color="#ffca28" />
+                      <stop offset="50%" stop-color="#ffd166" />
                       <stop offset="100%" stop-color="#4fc3f7" />
+                    </linearGradient>
+                    <linearGradient id="tempAreaGradient" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#4fc3f7" stop-opacity="0.22" />
+                      <stop offset="100%" stop-color="#4fc3f7" stop-opacity="0" />
                     </linearGradient>
                   </defs>
 
                   {% for point in graph_points %}
-                    <circle cx="{{ point.x }}" cy="{{ point.y }}" r="4" fill="#ffffff" />
+                    <circle
+                      cx="{{ point.x }}"
+                      cy="{{ point.y }}"
+                      r="3.5"
+                      class="graph_point"
+                    />
+                    <text
+                      x="{{ point.x }}"
+                      y="184"
+                      class="graph_icon"
+                      text-anchor="middle"
+                    >{{ hourly_forecast[loop.index0].icon }}</text>
+                    <text
+                      x="{{ point.x }}"
+                      y="211"
+                      class="graph_time"
+                      text-anchor="middle"
+                    >{{ hourly_forecast[loop.index0].time }}</text>
                   {% endfor %}
 
                 </svg>
-
-                <div class="graph_labels">
-                  {% for hour in hourly_forecast %}
-                    <div class="graph_label">
-                      <span class="graph_icon">{{ hour.icon }}</span>
-                      <span class="graph_time">{{ hour.time }}</span>
-                    </div>
-                  {% endfor %}
-                </div>
               </div>
               
             </div>
@@ -314,4 +343,3 @@
   
 
 </html>
-

@@ -100,7 +100,7 @@ def search():
 
     hourly_forecast = []
     for entry in forecast_json["list"][:8]:
-        time_label = convert_unix_time(entry["dt"])
+        time_label = datetime.fromtimestamp(entry["dt"]).strftime("%I %p").lstrip("0")
         temp_kelvin = entry["main"]["temp"]
         temp_celsius = round(temp_kelvin - 273.15) if temp_kelvin > 100 else round(temp_kelvin)
         entry_hour = datetime.fromtimestamp(entry["dt"]).hour
@@ -110,20 +110,40 @@ def search():
     print(hourly_forecast)
 
     temps = [hour["temp"] for hour in hourly_forecast]
-    min_temp = min(temps)
-    max_temp = max(temps)
-    temp_range = max_temp - min_temp if max_temp != min_temp else 1
-
-    graph_left_margin = 45
-    graph_width = 630
-    graph_height = 150
-    point_spacing = graph_width / (len(hourly_forecast) - 1)
+    graph_axis_min = (min(temps) // 5 - 1) * 5
+    graph_axis_max = (max(temps) // 5 + 1) * 5
+    graph_plot_left = 48
+    graph_plot_right = 690
+    graph_plot_top = 34
+    graph_plot_bottom = 145
+    graph_axis_range = graph_axis_max - graph_axis_min
 
     graph_points = []
     for i, hour in enumerate(hourly_forecast):
-        x = round(i * point_spacing)
-        y = round(graph_height - ((hour["temp"] - min_temp) / temp_range) * graph_height)
+        x = round(
+            graph_plot_left
+            + i * (graph_plot_right - graph_plot_left) / (len(hourly_forecast) - 1)
+        )
+        y = round(
+            graph_plot_bottom
+            - (hour["temp"] - graph_axis_min)
+            / graph_axis_range
+            * (graph_plot_bottom - graph_plot_top)
+        )
         graph_points.append({"x": x, "y": y})
+
+    graph_axis_ticks = [
+        {
+            "value": temperature,
+            "y": round(
+                graph_plot_bottom
+                - (temperature - graph_axis_min)
+                / graph_axis_range
+                * (graph_plot_bottom - graph_plot_top)
+            ),
+        }
+        for temperature in range(graph_axis_min, graph_axis_max + 1, 5)
+    ]
 
     polyline_points = " ".join([f"{p['x']},{p['y']}" for p in graph_points])
 
@@ -151,6 +171,7 @@ def search():
         sunset_desc = sunset_desc,
         hourly_forecast = hourly_forecast, 
         graph_points = graph_points,
+        graph_axis_ticks = graph_axis_ticks,
         polyline_points = polyline_points
     )
 
