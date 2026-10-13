@@ -263,14 +263,14 @@
                 >
                   {% for tick in graph_axis_ticks %}
                     <line
-                      x1="48"
+                      x1="{{ graph_plot_left }}"
                       y1="{{ tick.y }}"
-                      x2="690"
+                      x2="{{ graph_plot_right }}"
                       y2="{{ tick.y }}"
                       class="graph_guide"
                     />
                     <text
-                      x="40"
+                      x="{{ graph_plot_left - 12 }}"
                       y="{{ tick.y }}"
                       class="graph_axis_label"
                       text-anchor="end"
