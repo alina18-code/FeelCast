@@ -256,7 +256,7 @@
               </div>
               <div class="graph_container">
                 <svg
-                  viewBox="0 0 700 220"
+                  viewBox="0 0 700 200"
                   preserveAspectRatio="none"
                   class="temp_graph"
                   role="img"
@@ -271,7 +271,7 @@
                       class="graph_guide"
                     />
                     <text
-                      x="{{ graph_plot_left - 12 }}"
+                      x="{{ graph_plot_left - 64 }}"
                       y="{{ tick.y }}"
                       class="graph_axis_label"
                       text-anchor="end"
@@ -318,13 +318,13 @@
                     />
                     <text
                       x="{{ point.x }}"
-                      y="184"
+                      y="164"
                       class="graph_icon"
                       text-anchor="middle"
                     >{{ hourly_forecast[loop.index0].icon }}</text>
                     <text
                       x="{{ point.x }}"
-                      y="211"
+                      y="190"
                       class="graph_time"
                       text-anchor="middle"
                     >{{ hourly_forecast[loop.index0].time }}</text>

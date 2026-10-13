@@ -730,23 +730,60 @@ body {
 }
 
 .graph_container {
-  background: linear-gradient(135deg, rgba(15, 67, 98, 0.56), rgba(15, 47, 75, 0.46));
-  border: 1px solid rgba(79, 195, 247, 0.25);
-  border-radius: 18px;
-  padding: 14px 16px 12px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(14, 67, 101, 0.72), rgba(9, 39, 69, 0.68));
+  border: 1px solid rgba(119, 215, 255, 0.36);
+  border-radius: 20px;
+  padding: 12px 20px 10px;
+  box-shadow:
+    0 18px 48px rgba(0, 12, 28, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 0 34px rgba(91, 194, 246, 0.08);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.graph_container::before,
+.graph_container::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.graph_container::before {
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background:
+    radial-gradient(ellipse at 0% 0%, rgba(170, 236, 255, 0.28), transparent 28%),
+    radial-gradient(ellipse at 100% 0%, rgba(106, 199, 255, 0.2), transparent 26%),
+    radial-gradient(ellipse at 100% 100%, rgba(106, 199, 255, 0.14), transparent 24%);
+}
+
+.graph_container::after {
+  top: 0;
+  left: 5%;
+  right: 5%;
+  height: 1px;
+  z-index: 2;
+  background: linear-gradient(90deg, transparent, rgba(199, 240, 255, 0.52), transparent);
 }
 
 .temp_graph {
+  position: relative;
+  z-index: 1;
   width: 100%;
-  height: 220px;
+  height: clamp(150px, 16.5vw, 200px);
   display: block;
 }
 
 .graph_axis_label {
-  fill: rgba(255, 255, 255, 0.85);
+  fill: rgba(230, 244, 255, 0.82);
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .graph_temp_label {
@@ -783,7 +820,7 @@ body {
 }
 
 .graph_time {
-  color: rgba(255, 255, 255, 0.85);
+  fill: rgba(230, 244, 255, 0.9);
   font-family: Arial, Helvetica, sans-serif;
   font-size: 11px;
 }
@@ -791,20 +828,21 @@ body {
 
 .hourly_forecast {
   position: relative;
+  left: 50%;
+  transform: translateX(-50%);
   color: #ffffff;
   z-index: 1;
-  width: 100%;
-  max-width: 1300px;
-  margin: 0 auto;
-  padding: 0 20px;
+  width: min(1000px, calc(100vw - 40px));
+  max-width: none;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
-
 }
 
 .hourly_forecast_content {
   position: relative;
   z-index: 1;
-  max-width: 1100px;
+  max-width: 1000px;
   margin: 0 auto;
   width: 100%;
 }
@@ -814,16 +852,31 @@ body {
   box-sizing: border-box;
 }
 
-@media (min-width: 1080px) {
-  .hourly_forecast .graph_container {
-    max-width: 1040px;
-    margin: 0 auto;
-  }
+.hourly_forecast_content .header_section {
+  margin-top: 12px;
+  margin-bottom: 22px;
 }
 
-.hourly_forecast_content .header_section {
-  margin-top: 20px;
-  margin-bottom: 30px;
+.hourly_forecast_content .section_label {
+  color: #73d5ff;
+  font-weight: 700;
+}
+
+.hourly_forecast_content .section_title {
+  color: rgba(255, 255, 255, 0.96);
+  font-size: clamp(28px, 3vw, 34px);
+  letter-spacing: -0.02em;
+}
+
+.hourly_forecast_content .section_subtitle {
+  max-width: 440px;
+  color: rgba(230, 244, 255, 0.78);
+  line-height: 1.5;
+}
+
+.hourly_forecast > footer {
+  margin-top: 34px;
+  padding: 24px 20px 12px;
 }
 
 .weather_particles {
