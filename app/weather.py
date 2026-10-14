@@ -62,6 +62,7 @@ def get_daily_forecast(lat, lon, api_key, units="metric"):
     try:
         response = requests.get(url, params=params, timeout=10)
         response.raise_for_status()
+    
         data = response.json()
 
         timezone_offset = data.get("timezone_offset", 0)

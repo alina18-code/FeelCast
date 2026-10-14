@@ -97,6 +97,7 @@ def search():
     sunset_desc = describe_sunset(readable_sunset)
 
     daily_forecast = get_daily_forecast(latitude, longitude, api_key=API_KEY)
+    
 
     forecast_json = get_forecast_weather(latitude, longitude, api_key=API_KEY)
 
