@@ -334,6 +334,38 @@
               
             </div>
 
+            <section class="weekly-forecast" id="weekly-forecast">
+                  <div class="forecast-heading">
+                      <h2>7-Day Forecast</h2>
+                      <p>Plan ahead with the weather for the week.</p>
+                  </div>
+
+                  <div class="weekly-forecast-row">
+                      {% for day in daily_forecast %}
+                      <article class="weekly-card">
+                          <h3>{{ day.day }}</h3>
+
+                          <div class="weekly-icon">
+                              {{ day.icon }}
+                          </div>
+
+                          <div class="weekly-temperatures">
+                              <span>{{ day.high }}°</span>
+                              <span class="weekly-low">{{ day.low }}°</span>
+                          </div>
+
+                          <p class="weekly-condition">
+                              {{ day.condition }}
+                          </p>
+                      </article>
+                      {% else %}
+                      <p class="forecast-message">
+                          The weekly forecast is currently unavailable.
+                      </p>
+                      {% endfor %}
+                  </div>
+            </section>
+
             <footer>
               <div class="footer_brand">
                 <span class="footer_icon">☁️</span>

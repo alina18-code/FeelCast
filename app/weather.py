@@ -2,6 +2,7 @@ from dotenv import load_dotenv
 import os
 import requests
 from utils import convert_unix_time, convert_meter_kilometre
+from datetime import datetime, timedelta, timezone
 load_dotenv()
 
 api_key = os.getenv("WEATHER_API")
@@ -45,6 +46,69 @@ def get_forecast_weather (lat, lon, api_key=""):
     response.raise_for_status()
     
     return response.json()
+
+
+def get_daily_forecast(lat, lon, api_key, units="metric"):
+    url = "https://api.openweathermap.org/data/3.0/onecall"
+
+    params = {
+        "lat": lat,
+        "lon": lon,
+        "appid": api_key,
+        "units": units,
+        "exclude": "current,minutely,hourly,alerts"
+    }
+
+    try:
+        response = requests.get(url, params=params, timeout=10)
+        response.raise_for_status()
+        data = response.json()
+
+        timezone_offset = data.get("timezone_offset", 0)
+        forecast_days = []
+
+        for day in data.get("daily", [])[:7]:
+            local_time = datetime.fromtimestamp(
+                day["dt"] + timezone_offset,
+                tz=timezone.utc
+            )
+
+            weather = day["weather"][0]
+            condition = weather["description"].title()
+            weather_id = weather["id"]
+
+            if weather_id >= 200 and weather_id < 300:
+                icon = "⛈️"
+            elif weather_id >= 300 and weather_id < 600:
+                icon = "🌧️"
+            elif weather_id >= 600 and weather_id < 700:
+                icon = "❄️"
+            elif weather_id >= 700 and weather_id < 800:
+                icon = "🌫️"
+            elif weather_id == 800:
+                icon = "☀️"
+            else:
+                icon = "🌤️" if weather_id < 803 else "☁️"
+
+            if local_time.date() == datetime.now(
+                timezone.utc
+            ).replace(tzinfo=None).date():
+                day_name = "Today"
+            else:
+                day_name = local_time.strftime("%a, %d %b")
+
+            forecast_days.append({
+                "day": day_name,
+                "icon": icon,
+                "high": round(day["temp"]["max"]),
+                "low": round(day["temp"]["min"]),
+                "condition": condition
+            })
+
+        return forecast_days
+
+    except (requests.RequestException, KeyError, IndexError, TypeError, ValueError):
+        return []
 
     
 

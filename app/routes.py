@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from weather import get_geocoding_info, get_weather_info, get_forecast_weather
+from weather import get_geocoding_info, get_weather_info, get_forecast_weather, get_daily_forecast
 import requests
 from dotenv import load_dotenv
 import os
@@ -96,6 +96,8 @@ def search():
     sunrise_desc = describe_sunrise(readable_sunrise)
     sunset_desc = describe_sunset(readable_sunset)
 
+    daily_forecast = get_daily_forecast(latitude, longitude, api_key=API_KEY)
+
     forecast_json = get_forecast_weather(latitude, longitude, api_key=API_KEY)
 
     hourly_forecast = []
@@ -147,6 +149,8 @@ def search():
 
     polyline_points = " ".join([f"{p['x']},{p['y']}" for p in graph_points])
 
+    
+
 
     return render_template(
         "index.html",
@@ -174,7 +178,8 @@ def search():
         graph_axis_ticks = graph_axis_ticks,
         graph_plot_left = graph_plot_left,
         graph_plot_right = graph_plot_right,
-        polyline_points = polyline_points
+        polyline_points = polyline_points,
+        daily_forecast = daily_forecast,
     )
 
 
