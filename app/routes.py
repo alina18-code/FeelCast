@@ -100,7 +100,6 @@ def search():
 
     forecast_json = get_forecast_weather(latitude, longitude, api_key=API_KEY)
     daily_forecast = get_daily_forecast(forecast_json["list"])
-    print(daily_forecast)
 
     hourly_forecast = []
     for entry in forecast_json["list"][:8]:
