@@ -2,7 +2,6 @@ from dotenv import load_dotenv
 import os
 import requests
 from utils import convert_unix_time, convert_meter_kilometre
-from datetime import datetime, timedelta, timezone
 load_dotenv()
 
 api_key = os.getenv("WEATHER_API")
