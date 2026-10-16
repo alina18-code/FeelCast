@@ -62,6 +62,7 @@ def describe_visibility(visibility_km):
         return "Visibility is very poor right now, likely due to dense fog or heavy precipitation. Travel conditions may be hazardous, so extra caution is strongly recommended."
 
 
+
 def describe_wind(wind_speed):
     if wind_speed < 2:
         return "The air is calm at the moment, with barely any breeze to speak of. Smoke would rise almost straight up, and leaves on trees should be completely still."
@@ -106,3 +107,66 @@ def describe_sunset(readable_sunset):
 
 
 
+def get_daily_forecast(forecast_list):
+    days = {}
+
+    for entry in forecast_list:
+        dt = datetime.fromtimestamp(entry["dt"])
+        day_key = dt.strftime("%Y-%m-%d")
+
+        temp_kelvin = entry["main"]["temp"]
+        temp_celsius = temp_kelvin - 273.15 if temp_kelvin > 100 else temp_kelvin
+
+        condition_main = entry["weather"][0]["main"]
+        condition_desc = entry["weather"][0]["description"]
+
+        if day_key not in days:
+            days[day_key] = {
+                "date": dt,
+                "temps": [],
+                "conditions": []
+            }
+
+        days[day_key]["temps"].append(temp_celsius)
+        days[day_key]["conditions"].append(condition_main)
+
+    daily_summary = []
+    for day_key, data in list(days.items())[:7]:
+        high = round(max(data["temps"]))
+        low = round(min(data["temps"]))
+        most_common_condition = max(set(data["conditions"]), key=data["conditions"].count)
+
+        theme_icons = {
+            "Clear": "☀️",
+            "Clouds": "☁️",
+            "Rain": "🌧️",
+            "Drizzle": "🌦️",
+            "Thunderstorm": "⛈️",
+            "Snow": "❄️",
+        }
+        icon = theme_icons.get(most_common_condition, "☁️")
+
+        day_label = dt_label(data["date"], day_key, days)
+
+        daily_summary.append({
+            "label": day_label,
+            "icon": icon,
+            "high": high,
+            "low": low,
+            "condition": most_common_condition
+        })
+
+    return daily_summary
+
+
+def dt_label(date_obj, day_key, days):
+    today_key = datetime.now().strftime("%Y-%m-%d")
+    tomorrow_key = (datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)).strftime("%Y-%m-%d")
+
+    all_keys = list(days.keys())
+    if day_key == all_keys[0]:
+        return "Today"
+    elif day_key == all_keys[1]:
+        return "Tomorrow"
+    else:
+        return date_obj.strftime("%a, %d %b")

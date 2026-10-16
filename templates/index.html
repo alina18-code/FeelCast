@@ -334,33 +334,23 @@
               
             </div>
 
-            <section class="weekly-forecast" id="weekly-forecast">
-                  <div class="forecast-heading">
-                      <h2>7-Day Forecast</h2>
-                      <p>Plan ahead with the weather for the week.</p>
+            <div class="daily_forecast_wrapper">
+              <button id="daily_scroll_prev" class="daily_scroll_arrow daily_scroll_arrow_left" aria-label="Show previous days">‹</button>
+
+              <div class="daily_forecast_row" id="daily_forecast_row">
+                {% for day in daily_forecast %}
+                  <div class="daily_card{% if loop.first %} daily_card_active{% endif %}">
+                    <span class="daily_label">{{ day.label }}</span>
+                    <span class="daily_icon">{{ day.icon }}</span>
+                    <span class="daily_temp">{{ day.high }}° / {{ day.low }}°</span>
+                    <span class="daily_condition">{{ day.condition }}</span>
                   </div>
+                {% endfor %}
+              </div>
 
-                  <div class="weekly-forecast-row">
-                      {% for day in daily_forecast %}
-                      <article class="weekly-card">
-                          <h3>{{ day.day }}</h3>
+              <button id="daily_scroll_next" class="daily_scroll_arrow" aria-label="Show next days">›</button>
+            </div>
 
-                          <div class="weekly-icon">
-                              {{ day.icon }}
-                          </div>
-
-                          <div class="weekly-temperatures">
-                              <span>{{ day.high }}°</span>
-                              <span class="weekly-low">{{ day.low }}°</span>
-                          </div>
-
-                          <p class="weekly-condition">
-                              {{ day.condition }}
-                          </p>
-                      </article>
-                      
-                  </div>
-            </section>
 
             <footer>
               <div class="footer_brand">

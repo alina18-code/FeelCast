@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request, jsonify
-from weather import get_geocoding_info, get_weather_info, get_forecast_weather, get_daily_forecast
+from weather import get_geocoding_info, get_weather_info, get_forecast_weather
 import requests
 from dotenv import load_dotenv
 import os
-from utils import convert_unix_time, convert_meter_kilometre, get_theme, describe_humidity, describe_rain, describe_sunrise, describe_sunset, describe_visibility, describe_wind, describe_wind_direction
+from utils import convert_unix_time, convert_meter_kilometre, get_theme, describe_humidity, describe_rain, describe_sunrise, describe_sunset, describe_visibility, describe_wind, describe_wind_direction, get_daily_forecast
 from datetime import datetime
 
 load_dotenv ()
@@ -96,10 +96,11 @@ def search():
     sunrise_desc = describe_sunrise(readable_sunrise)
     sunset_desc = describe_sunset(readable_sunset)
 
-    daily_forecast = get_daily_forecast(latitude, longitude, api_key=API_KEY)
     
 
     forecast_json = get_forecast_weather(latitude, longitude, api_key=API_KEY)
+    daily_forecast = get_daily_forecast(forecast_json["list"])
+    print(daily_forecast)
 
     hourly_forecast = []
     for entry in forecast_json["list"][:8]:

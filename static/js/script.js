@@ -223,3 +223,20 @@ function createWeatherParticles(theme) {
 
 const currentPageTheme = document.querySelector('.main_page').classList[1];
 createWeatherParticles(currentPageTheme);
+
+const dailyRow = document.getElementById('daily_forecast_row');
+const scrollNextBtn = document.getElementById('daily_scroll_next');
+const scrollPrevBtn = document.getElementById('daily_scroll_prev');
+
+
+if (scrollNextBtn) {
+  scrollNextBtn.addEventListener('click', () => {
+    dailyRow.scrollBy({ left: 160, behavior: 'smooth' });
+  });
+}
+
+if (scrollPrevBtn) {
+  scrollPrevBtn.addEventListener('click', () => {
+    dailyRow.scrollBy({ left: -160, behavior: 'smooth' });
+  });
+}
