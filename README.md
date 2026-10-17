@@ -119,10 +119,7 @@ The interface keeps the weather information clear while allowing the atmosphere 
 
 ## 🔮 Future Improvements
 
-* More detailed hourly graphs
 * Location detection
-* More weather atmospheres
-* Improved animations and sound
 * Automated testing
 * Production deployment
 
