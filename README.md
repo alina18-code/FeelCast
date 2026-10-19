@@ -121,7 +121,6 @@ The interface keeps the weather information clear while allowing the atmosphere 
 
 * Location detection
 * Automated testing
-* Production deployment
 
 ---
 
