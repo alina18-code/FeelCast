@@ -1,11 +1,3 @@
-import os
-import sys
-
-# Allow Python to recognize the 'app' package when running locally
-base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-if base_dir not in sys.path:
-    sys.path.insert(0, base_dir)
-
 
 from flask import Flask, render_template, request, jsonify
 from app.weather import get_geocoding_info, get_weather_info, get_forecast_weather
@@ -19,11 +11,8 @@ load_dotenv ()
 
 API_KEY = os.getenv("WEATHER_API")
 
-base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-template_dir = os.path.join(base_dir, 'templates')
-static_dir = os.path.join(base_dir, 'static')
+app = Flask(__name__, template_folder="../templates", static_folder="../static")
 
-app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
 
 
 @app.route("/")
