@@ -1,9 +1,18 @@
+import os
+import sys
+
+# Allow Python to recognize the 'app' package when running locally
+base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if base_dir not in sys.path:
+    sys.path.insert(0, base_dir)
+
+
 from flask import Flask, render_template, request, jsonify
-from weather import get_geocoding_info, get_weather_info, get_forecast_weather
+from app.weather import get_geocoding_info, get_weather_info, get_forecast_weather
 import requests
 from dotenv import load_dotenv
 import os
-from utils import convert_unix_time, convert_meter_kilometre, get_theme, describe_humidity, describe_rain, describe_sunrise, describe_sunset, describe_visibility, describe_wind, describe_wind_direction, get_daily_forecast
+from app.utils import convert_unix_time, convert_meter_kilometre, get_theme, describe_humidity, describe_rain, describe_sunrise, describe_sunset, describe_visibility, describe_wind, describe_wind_direction, get_daily_forecast
 from datetime import datetime
 
 load_dotenv ()
