@@ -812,23 +812,28 @@ body {
 }
 
 .graph_axis_label {
-  fill: rgba(230, 244, 255, 0.82);
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 12px;
-}
-
-.graph_temp_label {
   fill: #ffffff;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 11px;
+  font-size: 13px;
+  font-weight: 700;
   paint-order: stroke;
-  stroke: rgba(16, 30, 48, 0.8);
+  stroke: rgba(6, 22, 42, 0.9);
   stroke-width: 3px;
   stroke-linejoin: round;
 }
 
 .graph_temp_label {
-  font-weight: 600;
+  fill: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  paint-order: stroke;
+  stroke: rgba(6, 22, 42, 0.9);
+  stroke-width: 3.5px;
+  stroke-linejoin: round;
+}
+
+.graph_temp_label {
+  font-weight: 700;
   text-anchor: middle;
 }
 
@@ -851,9 +856,14 @@ body {
 }
 
 .graph_time {
-  fill: rgba(230, 244, 255, 0.9);
+  fill: #ffffff;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 11px;
+  font-size: 12px;
+  font-weight: 700;
+  paint-order: stroke;
+  stroke: rgba(6, 22, 42, 0.9);
+  stroke-width: 3px;
+  stroke-linejoin: round;
 }
 
 
@@ -1092,7 +1102,7 @@ footer {
   .graph_axis_label,
   .graph_temp_label,
   .graph_time {
-    font-size: 9px;
+    font-size: 13px;
   }
 
   .daily_card {
