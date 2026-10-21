@@ -1,6 +1,7 @@
 # FeelCast 🌦️
 
 > **Don't just see the weather — feel the weather.**
+🌐 Live site: https://feelcast.pythonanywhere.com
 
 FeelCast is a weather web application that turns live weather data into a more immersive experience. Instead of showing only numbers and forecasts, FeelCast adapts its visual atmosphere to the weather so each condition has its own feeling.
 
@@ -121,7 +122,6 @@ The interface keeps the weather information clear while allowing the atmosphere 
 
 * Location detection
 * Automated testing
-
 ---
 
 **FeelCast — weather information with a little more feeling.**
