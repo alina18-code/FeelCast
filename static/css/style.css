@@ -563,7 +563,6 @@ body {
 
 @media (max-width: 600px) {
 
-    
     .site_header {
         padding: 20px 18px;
     }
@@ -578,10 +577,10 @@ body {
     }
 
 
-    
     .search_section {
-        width: calc(100% - 32px);
+        width: 100%;
         margin: 0 auto;
+        padding: 20px 16px 30px;
     }
 
     .search_section form {
@@ -592,18 +591,20 @@ body {
         width: 100%;
         max-width: 420px;
         margin: 0 auto;
+        box-sizing: border-box;
     }
 
     .search_bar {
         width: 100%;
         min-width: 0;
         box-sizing: border-box;
+        flex-wrap: nowrap;
     }
 
     .search_section input {
-        width: auto;
+        width: 100%;
         min-width: 0;
-        flex: 1;
+        flex: 1 1 0;
         font-size: 16px;
         box-sizing: border-box;
     }
@@ -611,10 +612,9 @@ body {
     .search_section button {
         width: auto;
         flex: 0 0 auto;
+        padding: 10px 12px;
     }
 
-
-    
     .main_weather {
         width: calc(100% - 32px);
         margin: 20px auto 0;
@@ -1072,6 +1072,15 @@ footer {
 
 @media (max-width: 600px) {
 
+  .detailed_weather {
+    padding: 56px 16px;
+    box-sizing: border-box;
+  }
+
+  .detailed_weather_content {
+    min-width: 0;
+  }
+
   .graph_container {
     padding: 16px 12px;
   }
@@ -1148,17 +1157,21 @@ footer {
   }
 
   .search_bar {
-    flex-wrap: wrap;
+    gap: 6px;
+    padding: 5px;
+  }
+
+  .search_icon {
+    padding-left: 6px;
   }
 
   .search_bar input {
-    flex: 1 1 0;
+    padding: 10px 4px;
   }
 
   .search_section .search_bar button {
-    width: 100%;
-    flex-basis: 100%;
-    box-sizing: border-box;
+    padding: 10px 8px;
+    font-size: 14px;
   }
 
 }
