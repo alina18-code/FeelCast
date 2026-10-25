@@ -1201,3 +1201,12 @@ footer {
   }
 
 }
+
+@media (max-width: 600px) {
+  .main_page.sunny { background-image: url("/static/images/sunny_mobile.png"); }
+  .main_page.cloudy { background-image: url("/static/images/cloudy_mobile.jpeg"); }
+  .main_page.rain { background-image: url("/static/images/rain_mobile.jpeg"); }
+  .main_page.snow { background-image: url("/static/images/snow_mobile.jpeg"); }
+  .main_page.storm { background-image: url("/static/images/storm_mobile.jpeg"); }
+  .main_page.night { background-image: url("/static/images/night_mobile.png"); }
+}
