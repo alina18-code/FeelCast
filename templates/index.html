@@ -7,9 +7,9 @@
     <title>FeelCast</title>
     <link rel="icon" type="image/png" sizes="512x512"
       href="{{ url_for('static', filename='images/favicon.png') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=3" />
     <audio id="weather_audio" loop data-theme="{{ theme }}"></audio>
-    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}?v=3" defer></script>
   </head>
 
   <body>
