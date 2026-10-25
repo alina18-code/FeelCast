@@ -282,7 +282,7 @@
 
                   {% for point in graph_points %}
                     <text
-                      x="{{ point.x }}"
+                      x="{{ point.x + 12 if loop.first else point.x }}"
                       y="{{ [point.y - 12, 22] | max }}"
                       class="graph_temp_label"
                     >{{ hourly_forecast[loop.index0].temp }}°</text>
