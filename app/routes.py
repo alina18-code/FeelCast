@@ -5,7 +5,7 @@ import requests
 from dotenv import load_dotenv
 import os
 from app.utils import convert_unix_time, convert_meter_kilometre, get_theme, describe_humidity, describe_rain, describe_sunrise, describe_sunset, describe_visibility, describe_wind, describe_wind_direction, get_daily_forecast
-from datetime import datetime
+from datetime import datetime, timezone
 
 load_dotenv ()
 
@@ -64,7 +64,6 @@ def search():
     condition = weather_json["weather"][0]["description"]
 
     condition_main = weather_json["weather"][0]["main"]
-    theme = get_theme(condition_main)
 
     humidity = weather_json["main"]["humidity"]
     feels_like = weather_json["main"]["feels_like"]
@@ -75,11 +74,9 @@ def search():
     sunset = weather_json["sys"]["sunset"]
     readable_sunset = convert_unix_time(sunset)
 
-    current_time = weather_json["dt"]
-    is_night = current_time < sunrise or current_time > sunset
-
-    if is_night and condition_main in ["Clear", "Clouds"]:
-        theme = "night"
+    current_time = datetime.now(timezone.utc).timestamp()
+    is_night = current_time < sunrise or current_time >= sunset
+    theme = get_theme(condition_main, is_night=is_night)
 
     wind_speed = weather_json["wind"]["speed"]
     wind_dir = weather_json["wind"]["deg"]

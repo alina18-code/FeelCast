@@ -22,7 +22,10 @@ def convert_meter_kilometre (meters = float) -> float:
     return str(rounded_kilometre)
 
 
-def get_theme (condition_main):
+def get_theme(condition_main, is_night=False):
+    if is_night and condition_main in {"Clear", "Clouds"}:
+        return "night"
+
     theme_map = {
         "Clear": "sunny",
         "Clouds": "cloudy",
