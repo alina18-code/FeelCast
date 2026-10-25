@@ -117,7 +117,7 @@ def search():
     temps = [hour["temp"] for hour in hourly_forecast]
     graph_axis_min = (min(temps) // 5 - 1) * 5
     graph_axis_max = (max(temps) // 5 + 1) * 5
-    graph_plot_left = 82
+    graph_plot_left = 56
     graph_plot_right = 670
     graph_plot_top = 34
     graph_plot_bottom = 145
